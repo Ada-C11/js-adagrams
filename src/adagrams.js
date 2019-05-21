@@ -11,14 +11,28 @@ const Adagrams = {
   "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "Z"],
 
   drawLetters() {
-  let lettersCopy = [...this.letterArray];
-  let hand = [];
-  for (let i = 0; i < 10; i += 1) {
-    let randIndex = Math.floor(Math.random()*lettersCopy.length);
-    hand.push(lettersCopy[randIndex]);
-    lettersCopy.splice(randIndex, 1);
-  }
-  return hand;
+    let lettersCopy = [...this.letterArray];
+    let hand = [];
+    for (let i = 0; i < 10; i += 1) {
+      let randIndex = Math.floor(Math.random()*lettersCopy.length);
+      hand.push(lettersCopy[randIndex]);
+      lettersCopy.splice(randIndex, 1);
+    }
+    return hand;
+  },
+
+  usesAvailableLetters(input, lettersInHand) {
+    if (input.length > lettersInHand.length) return false;
+    let handObject = {};
+    lettersInHand.forEach(letter => {
+      handObject[letter] ? handObject[letter] += 1 : handObject[letter] = 1 ;
+    });
+    for (let i = 0; i < input.length; i += 1) {
+      if (!handObject[input[i]] || handObject[input[i]] <= 0) return false;
+      handObject[input[i]] -= 1;
+    }
+    return true;
+
   },
 };
 // Adagrams.drawLetters()
