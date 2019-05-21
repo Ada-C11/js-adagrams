@@ -10,7 +10,7 @@ describe('Game Model', () => {
     rounds: 3,
     time: 60, // Seconds
   };
-
+  
   describe('constructor', () => {
     it('creates a new Model instance', () => {
       const model = new Model(config);
