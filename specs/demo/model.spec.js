@@ -319,12 +319,6 @@ describe('Game Model', () => {
         const model = getModel();
         const word = getWord(model);
 
-        console.log('vvvvvvvvvvvvvvvvvvvvv')
-        console.log(word)
-        console.log(model)
-        console.log('^^^^^^^^^^^^^^^^^^^^^')
-
-
         expect(model.playWord(word)).toBe(null);
         expect(model.playWord('123')).toBe(null);
         expect(model.playWord('')).toBe(null);
