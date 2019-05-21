@@ -36,7 +36,6 @@ const Adagrams = {
   usesAvailableLetters(input, lettersInHand) {
     const word = input.toUpperCase().split('');
     let handArray = lettersInHand;
-    let deleted = 0;
 
     for (let i = 0; i < word.length; i++) {
       if (handArray.includes(word[i])) {
