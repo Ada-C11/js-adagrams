@@ -49,11 +49,25 @@ const Adagrams = {
     return hand;
   },
 
-  usesAvailableLetters(word, drawn) {
+  usesAvailableLetters(input, lettersInHand) {
+
+    let countItems = function countItems(collection, letter) {
+      let count = 0;
+
+      for(let i = 0; i < collection.length; i += 1) {
+        if (collection[i] === letter) {
+          count += 1;
+        }
+      }
+    
+      return count;
+  }
+
 
     let result;
-    for(let i = 0; i < word.length; i += 1) {
-      result = drawn.includes(word[i]);
+    for(let i = 0; i < input.length; i += 1) {
+      result = lettersInHand.includes(input[i]) && countItems(lettersInHand, input[i]) >= countItems(input, input[i]);
+      
       if (!result) {
         return result;
       }
@@ -64,3 +78,9 @@ const Adagrams = {
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
+
+  //   for(let i = 0; i < collection.length; i += 1) {
+    //    if collection[i] === letter {
+    //      count += 1
+    //    }
+    // }
