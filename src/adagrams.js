@@ -48,6 +48,18 @@ const Adagrams = {
 
     return hand;
   },
+
+  usesAvailableLetters(word, drawn) {
+
+    let result;
+    for(let i = 0; i < word.length; i += 1) {
+      result = drawn.includes(word[i]);
+      if (!result) {
+        return result;
+      }
+    }
+    return result;
+  },
 };
 
 // Do not remove this line or your tests will break!
