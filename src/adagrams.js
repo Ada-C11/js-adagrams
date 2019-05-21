@@ -106,6 +106,7 @@ const Adagrams = {
 
   scoreWord(word) {
 
+    word = word.toUpperCase();
     let score = 0;
     for(let i = 0; i < word.length; i += 1) {
       score += letterScores[word[i]]
