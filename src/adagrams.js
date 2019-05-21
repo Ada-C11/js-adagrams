@@ -26,9 +26,28 @@ const Adagrams = {
     return letterHand
   },
 
-  usesAvailiabeLetters () {
 
-  },
+  usesAvailableLetters (input, lettersinHand) {
+    const lettersinHandHash = {};
+    lettersinHand.forEach((letter) => {
+      if(lettersinHandHash[letter]) {
+        lettersinHandHash[letter] += 1;
+      } else {
+        lettersinHandHash[letter] = 1;
+      }
+    });
+
+    for (let i = 0; i < input.length; i += 1) {
+      const letter = input[i];
+      if (lettersinHandHash[letter] && (lettersinHandHash[letter] > 0)) {
+        lettersinHandHash[letter] -= 1;
+      } else {
+        return false;
+      }
+    }
+
+    return true; 
+  }
 };
 
 
