@@ -29,9 +29,9 @@ const Adagrams = {
   },
   drawLetters() {
     let letterPool = [];
-    
+
     Object.keys(this.allLetters).forEach(letter => {
-      
+
       let times = this.allLetters[letter];
       for (let i = 0; i < times; i += 1) {
         letterPool.push(letter);
@@ -39,27 +39,27 @@ const Adagrams = {
     });
     letterPool = this.shuffle(letterPool);
     const hand = letterPool.slice(0, 10);
-    console.log(hand);
+    // console.log(hand);
     return hand;
   },
   shuffle(array) {
-    let currentIndex = array.length; 
+    let currentIndex = array.length;
     let temporaryValue;
     let randomIndex;
-  
+
     while (0 !== currentIndex) {
-  
+
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-  
+
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-  
+
     return array;
   },
-  usesAvailableLetters (word, drawn) {
+  usesAvailableLetters(word, drawn) {
     for (let i = 0; i < word.length; i += 1) {
       let char = word.charAt(i);
       if (drawn.includes(char)) {
@@ -70,7 +70,64 @@ const Adagrams = {
       }
     }
     return true;
+  },
+  scoreWord(word) {
+    let score = 0;
 
+    if (word === '') {
+      return score;
+    }
+
+    if (word.length >= 7) {
+      score += 8;
+    }
+
+    for (let i = 0; i < word.length; i += 1) {
+      switch (word.charAt(i).toUpperCase()) {
+        case 'A':
+        case 'E':
+        case 'I':
+        case 'O':
+        case 'U':
+        case 'L':
+        case 'N':
+        case 'S':
+        case 'R':
+        case 'T':
+          score += 1;
+          break;
+        case 'D':
+        case 'G':
+          score += 2;
+          break;
+        case 'B':
+        case 'C':
+        case 'M':
+        case 'P':
+          score += 3;
+          break;
+        case 'F':
+        case 'H':
+        case 'V':
+        case 'W':
+        case 'Y':
+          score += 4;
+          break;
+        case 'K':
+          score += 5;
+          break;
+        case 'J':
+        case 'X':
+          score += 8;
+          break;
+        case 'Q':
+        case 'Z':
+          score += 10;
+          break;
+
+      }
+    }
+    return score;
   }
 };
 
