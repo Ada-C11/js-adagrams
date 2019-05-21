@@ -10,7 +10,7 @@ describe('Game Model', () => {
     rounds: 3,
     time: 60, // Seconds
   };
-  
+
   describe('constructor', () => {
     it('creates a new Model instance', () => {
       const model = new Model(config);
@@ -318,6 +318,12 @@ describe('Game Model', () => {
       it('it returns null', () => {
         const model = getModel();
         const word = getWord(model);
+
+        console.log('vvvvvvvvvvvvvvvvvvvvv')
+        console.log(word)
+        console.log(model)
+        console.log('^^^^^^^^^^^^^^^^^^^^^')
+
 
         expect(model.playWord(word)).toBe(null);
         expect(model.playWord('123')).toBe(null);

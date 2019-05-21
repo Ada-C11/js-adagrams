@@ -14,7 +14,7 @@ const Adagrams = {
       let value = this.letterValues[key];
 
       for (let i = 0; i < value; i++) {
-        letterBag += key;
+        letterBag.push(key);
       }
     }
 
@@ -27,10 +27,10 @@ const Adagrams = {
     let hand = [];
 
     for (let i = 0; i < 10; i++) {
-      hand += letterBag[Math.floor(Math.random() * letterBag.length)];
+      hand.push(letterBag[Math.floor(Math.random() * letterBag.length)]);
     }
 
-    return hand.split(''); // I really don't know why this isn't an array to start but it works with the split so...
+    return hand
   },
 
   usesAvailableLetters(input, lettersInHand) {
@@ -40,8 +40,12 @@ const Adagrams = {
 
     for (let i = 0; i < word.length; i++) {
       if (handArray.includes(word[i])) {
-        handArray.splice(i - deleted, 1); // play around with this later if i have time
-        deleted += 1;
+        for (let j = 0; j < handArray.length; j++) {
+          if (handArray[j] === word[i]) {
+            handArray.splice(j, 1);
+            break
+          }
+        }
       } else {
         return false;
       }
@@ -84,7 +88,6 @@ const Adagrams = {
       'word': null, 
       'score': 0
     };
-    // max_score = winningHash[score]
 
     for (let i = 0; i < words.length; i++) {
       const thisWord = words[i];
