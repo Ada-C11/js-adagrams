@@ -32,8 +32,24 @@ const Adagrams = {
       }
     }
 
-    return drawnLetters
+    return drawnLetters;
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    let unusedLetters = lettersInHand;
+
+    //iterate through the array backwards, this prevents double checking a letter
+    for (let i = input.length -1 ; i >= 0; i -= 1) {
+      if (unusedLetters.includes(input[i])) {
+        unusedLetters.splice(i, 1);
+      } else {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
 };
 
 // Do not remove this line or your tests will break!
