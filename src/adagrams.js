@@ -37,12 +37,43 @@ const Adagrams = {
         letterPool.push(letter);
       }
     });
+    letterPool = this.shuffle(letterPool);
     const hand = letterPool.slice(0, 10);
-
+    console.log(hand);
     return hand;
   },
+  shuffle(array) {
+    let currentIndex = array.length; 
+    let temporaryValue;
+    let randomIndex;
+  
+    while (0 !== currentIndex) {
+  
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  },
+  usesAvailableLetters (word, drawn) {
+    for (let i = 0; i < word.length; i += 1) {
+      let char = word.charAt(i);
+      if (drawn.includes(char)) {
+        let index = drawn.indexOf(char);
+        drawn.splice(index, 1);
+      } else {
+        return false;
+      }
+    }
+    return true;
+
+  }
 };
 
-Adagrams.drawLetters();
+
 // Do not remove this line or your tests will break!
 export default Adagrams;
