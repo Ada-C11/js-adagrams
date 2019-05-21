@@ -112,6 +112,10 @@ const Adagrams = {
       score += letterScores[word[i]]
     }
 
+    if (word.length > 6) {
+      score += 8
+    }
+
     return score;
   }
 };
