@@ -61,6 +61,17 @@ const Adagrams = {
 
     return hand
   },
+  usesAvailableLetters (input, lettersInHand) {
+    for (let character of input) {
+      let index = lettersInHand.indexOf(character);
+      if (index === -1) {
+        return false;
+      } else {
+        lettersInHand.splice(index, 1);
+      }
+    };
+    return true;
+  },
 };
 
 // Do not remove this line or your tests will break!
