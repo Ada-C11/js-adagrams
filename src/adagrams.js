@@ -69,7 +69,7 @@ const Adagrams = {
       } else {
         lettersInHand.splice(index, 1);
       }
-    };
+    }
     return true;
   },
   scoreWord (word) {
@@ -114,6 +114,29 @@ const Adagrams = {
 
     return score;
   },
+  highestScoreFrom (words) {
+    let bestWord = ""
+    let bestScore = 0
+
+    for (let word of words) {
+      if (bestScore < this.scoreWord(word)) {
+        bestScore = this.scoreWord(word);
+        bestWord = word;
+      } 
+      if (bestScore === this.scoreWord(word)) {
+        if (bestWord.length === 10) {
+          bestWord = bestWord;
+        } else if (word.length === 10) {
+          bestWord = word;
+        } else if (word.length < bestWord.length) {
+          bestWord = word;
+        }
+      }
+    }
+
+    const best = {word: bestWord, score: bestScore}
+    return best;
+  }
 };
 
 // Do not remove this line or your tests will break!
