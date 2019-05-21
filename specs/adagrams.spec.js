@@ -45,7 +45,7 @@ describe('Adagrams', () => {
     });
   });
 
-  describe('scoreWord', () => {
+  describe.skip('scoreWord', () => {
     const expectScores = (wordScores) => {
       Object.entries(wordScores).forEach(([word, score]) => {
         expect(Adagrams.scoreWord(word)).toBe(score);
@@ -84,7 +84,7 @@ describe('Adagrams', () => {
     });
   });
 
-  describe('highestScoreFrom', () => {
+  describe.skip('highestScoreFrom', () => {
     it('returns a hash that contains the word and score of best word in an array', () => {
       const words = ['X', 'XX', 'XXX', 'XXXX'];
       const correct = { word: 'XXXX', score: Adagrams.scoreWord('XXXX') };
