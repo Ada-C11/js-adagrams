@@ -49,8 +49,33 @@ const Adagrams = {
     for (let i = 0; i < 8; i += 1) {
       letterPool.push('O');
     }
+
+    let playerHand = [];
+
+    for (let i = 0; i < 10; i += 1) {
+      let randLetter = letterPool[Math.floor(Math.random() * letterPool.length)];
+      playerHand.push(randLetter);
+    }
+
+    return playerHand;
     // Implement this method for wave 1
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    input = input.toUpperCase();
+    let letters = lettersInHand
+
+    for (let i = 0; i < input.length; i += 1) {
+      if (letters.includes(input[i])) {
+        letters.splice(input[i], 1);
+      } else {
+        return false;
+      }
+    }
+
+    return true;  
+  }
+  
 };
 
 // Do not remove this line or your tests will break!
