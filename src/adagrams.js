@@ -1,11 +1,6 @@
+const _ = require("lodash")
+
 const Adagrams = {
-  shuffle(letters) {
-    for (let i = letters.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [letters[i], letters[j]] = [letters[j], letters[i]];
-    }
-    return letters.slice(0,10);
-  },
   drawLetters() {
       const letterFrequency = [
         "A", "A", "A", "A", "A", "A", "A", "A", "A",
@@ -34,7 +29,7 @@ const Adagrams = {
         "Y", "Y",
         "Z",
       ];
-    const lettersInHand = this.shuffle(letterFrequency);
+    const lettersInHand = _.sampleSize(letterFrequency, 10);
     return lettersInHand;
   },
   usesAvailableLetters(input, lettersInHand) {
@@ -82,7 +77,7 @@ const Adagrams = {
   },
   highestScoreFrom(words) {
     let winner = { word: '', score: 0 };
-    words.forEach( (word) => {
+    words.forEach( word => {
       if (this.scoreWord(word) > winner.score) {
         winner = { word: word, score: this.scoreWord(word) }
       } else if (this.scoreWord(word) === winner.score) {
