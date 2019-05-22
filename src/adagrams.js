@@ -63,10 +63,8 @@ const Adagrams = {
         lettersHash[letter] = 1;
       }
     })
-    console.log(lettersHash);
     input.toUpperCase();
     const inputArray = input.split('');
-    console.log(inputArray);
     inputArray.forEach ( function(item) {
       if (lettersHash[item]) {
         lettersHash[item] -= 1;
@@ -76,8 +74,8 @@ const Adagrams = {
       } else {
         return false;
       }
-      return true;
     })
+    return true;
   },  
 };
 
