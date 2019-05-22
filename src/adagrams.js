@@ -28,22 +28,36 @@ const Adagrams = {
       X: 1,
       Y: 2,
       Z: 1
-    }
+    };
 
-  let myLetters = [];
+    let myLetters = [];
 
     for (let key in letterBank) {
-    while (letterBank[key] > 0) {
-      myLetters.push(key)
-      letterBank[key] -= 1
+      while (letterBank[key] > 0) {
+        myLetters.push(key);
+        letterBank[key] -= 1;
       }
     }
 
     myLetters.sort(() => Math.random());
     return myLetters.slice(0, 10);
   },
+
+  usesAvailableLetters(word, drawn) {
+    const handMap = {};
+    drawn.forEach(letter => {
+      if (handMap[letter]) handMap[letter] += 1;
+      else handMap[letter] = 1;
+    });
+    console.log(handMap);
+    //use a for loop (if/else statement) to make sure they have all the letters in input and if they do, decrement the value of the letter so that they've spent it
+    for (let i = 0; i < word.length; i += 1) {
+      if (hand[word[i]]) hand[word[i]] -= 1;
+      else return false;
+    }
+    return true;
+  }
 };
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
-
