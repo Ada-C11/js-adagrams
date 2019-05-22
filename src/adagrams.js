@@ -62,7 +62,6 @@ const Adagrams = {
     let total = 0;
     word = word.toUpperCase();
     
-
     for (let i = 0; i < word.length; i +=1) {
       switch (word.charAt(i)) {
         case 'A':
@@ -114,9 +113,34 @@ const Adagrams = {
 
     return total;
   },
+
+  highestScoreFrom (words) {
+    let winningWord = {
+      'word': "",
+      'score': 0,
+    };
+
+    for (let word of words) {
+      if (word.length == 10 && winningWord['word'].length != 10) {
+        winningWord['word'] = word;
+        winningWord['score'] = this.scoreWord(word);
+      } else if (this.scoreWord(word) >= winningWord['score'] && word.length == 10 && winningWord['word'].length != 10) {
+        winningWord['word'] = word;
+        winningWord['score'] = this.scoreWord(word);
+      } else if (this.scoreWord(word) >= winningWord['score'] && word.length < winningWord['word'].length && winningWord['word'].length != 10) {
+        winningWord['word'] = word;
+        winningWord['score'] = this.scoreWord(word);
+      } else if (this.scoreWord(word) > winningWord['score']) {
+        winningWord['word'] = word;
+        winningWord['score'] = this.scoreWord(word);
+      };
+    };
+    return winningWord
+    // console.log(winningWord)
+  },
 };
 
-// console.log(Adagrams.scoreWord('zance'))
+// console.log(Adagrams.highestScoreFrom(['z', 'zzzzzzz']))
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
