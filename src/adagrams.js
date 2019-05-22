@@ -58,8 +58,6 @@ const scoreChart = {
   Z: 10
 };
 
-
-
 const createLetters = function(alphaLetters) {
   let lettersArray = [];
   for (let key in alphaLetters) {
@@ -72,13 +70,13 @@ const createLetters = function(alphaLetters) {
 const Adagrams = {
   drawLetters() {
     const allLetters = createLetters(alphaLetters);
-    const letterCopy = allLetters.slice(0); 
-    const rand = []; 
+    const letterCopy = allLetters.slice(0);
+    const rand = [];
     for (let i = 0; i < 10 && i < letterCopy.length; i += 1) {
-      let index = Math.floor(Math.random() * letterCopy.length); 
+      let index = Math.floor(Math.random() * letterCopy.length);
       rand.push(letterCopy.splice(index, 1)[0]);
     }
-    return rand; //return result
+    return rand;
   },
 
   usesAvailableLetters(input, lettersInHand = []) {
@@ -90,7 +88,7 @@ const Adagrams = {
       } else {
         const index = lettersInHand.indexOf(letter);
         lettersInHand.splice(index, 1);
-      } 
+      }
     });
     return isValid;
   },
@@ -113,8 +111,8 @@ const Adagrams = {
       word: "",
       score: 0
     };
-    let bestWord = ''
-    let bestScore = 0
+    let bestWord = "";
+    let bestScore = 0;
 
     words.forEach(madeWord => {
       if (this.scoreWord(madeWord) > bestScore) {
@@ -124,19 +122,16 @@ const Adagrams = {
         if (bestWord.length < madeWord.length && madeWord.length === 10) {
           bestWord = madeWord;
           bestScore = this.scoreWord(madeWord);
-        } else if (
-          bestWord.length > madeWord.length &&
-          bestWord.length < 10
-        ) {
+        } else if (bestWord.length > madeWord.length && bestWord.length < 10) {
           bestWord = madeWord;
           bestScore = this.scoreWord(madeWord);
         }
       }
     });
-    bestWordHash.word = bestWord
-    bestWordHash.score = bestScore
+    bestWordHash.word = bestWord;
+    bestWordHash.score = bestScore;
     return bestWordHash;
-  },
+  }
 };
 
 // Do not remove this line or your tests will break!
