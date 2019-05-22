@@ -47,7 +47,7 @@ const Adagrams = {
     word.toUpperCase().split('').forEach(letter => {
       points += letterScores[letter];
     });
-    if (word.length > 6 && word.length < 11){
+    if (word.length >= 7){
       points += 8;
     }
     return points;
