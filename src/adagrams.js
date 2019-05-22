@@ -106,15 +106,9 @@ const Adagrams = {
       }
 
       if (maxScore == this.scoreWord(word)) {
-        if (word.length == 10 && winningWord.length != 10 ) {
+        if ((word.length == 10 && winningWord.length != 10 ) || (word.length < winningWord.length && winningWord.length != 10)) {
           winningWord = word;
-        } else if  (word.length != 10 && winningWord.length == 10 ) {
-          winningWord = winningWord;
-        } else {
-          if (word.length < winningWord.length) {
-            winningWord = word;
-          }
-        }
+        } 
       }
     }
 
