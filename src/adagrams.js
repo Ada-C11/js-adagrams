@@ -7,14 +7,14 @@ const Adagrams = {
     };
 
     for (let key in adagramsCount) {
-      for (let i = 0; i < adagramsCount[key]; i ++) {
+      for (let i = 0; i < adagramsCount[key]; i++) {
         letterPool.push(key);
       }
     }
 
     let playerHand = [];
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 10; i++) {
       let randLetter = letterPool[Math.floor(Math.random() * letterPool.length)];
       playerHand.push(randLetter);
     }
