@@ -10,10 +10,6 @@ const Adagrams = {
     "R", "R", "S", "S", "S", "S", "T", "T", "T", "T", "T", "T", "U", 
     "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "Z"],
 
-  letterScores: {A: 1, B: 3, C: 3, D: 2, E: 1, F: 4, G: 2,
-    H: 4, I: 1, J: 8, K: 5, L: 1, M: 3, N: 1, O: 1, P: 3, Q: 10,
-    R: 1, S: 1, T: 1, U: 1, V: 4, W: 4, X: 8, Y: 4, Z: 10},
-
   drawLetters() {
     let lettersCopy = [...this.letterArray];
     let hand = [];
@@ -49,7 +45,6 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-
     const scores = words.map((word) => this.scoreWord(word));
     const maxScore = scores.reduce((a,b) => Math.max(a,b));
     const ties = [];
@@ -62,36 +57,18 @@ const Adagrams = {
         } else ties.push(words[i]);
       }
     }
-    // const shortWord = ties.reduce((a,b) => Math.min(a.length, b.length));
-    // console.log(ties);
-    // console.log(scores);
-    // console.log(maxScore);
     if (!bestWord) {
       if (ties.length == 1) bestWord = ties[0];
       else {
         const minLength = ties.reduce((a,b) => Math.min(a.length, b.length));
-        // console.log(minLength);
-        // console.log(ties);
         bestWord = ties.filter(word => word.length == minLength)[0];
-        // console.log(bestWord);
       }
     }
     const bestWordObj = { word: bestWord, score: maxScore };
     return bestWordObj;
-    // console.log(scores);
-    // console.log(maxScore);
-    // console.log(bestWord);
-    // console.log(ties);
   },
 };
-// Adagrams.drawLetters()
-// console.log(Adagrams.drawLetters());
 
-console.log(Adagrams.highestScoreFrom(['MMMM', 'WWW']));
-console.log(Adagrams.highestScoreFrom(['AAAAAAAAAA', 'EEEEEEEEEE']));
-console.log(Adagrams.highestScoreFrom(['AAAAAAAAAA', 'BBBBBB']));
-
-console.log(Adagrams.highestScoreFrom(['X', 'XX', 'XXX', 'XXXX', 'XXXX']));
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
