@@ -50,26 +50,20 @@ const Adagrams = {
 
   usesAvailableLetters(input, lettersInHand) {
     for (let i = 0; i < input.length; i += 1) {
-      let letter = input.charAt(i)
-      if (!lettersInHand.includes(letter))
+      let letter = input.charAt(i);
+      if (!lettersInHand.includes(letter)) {
         return false;
+      }
+      let letterIndex = lettersInHand.indexOf(letter)
+      lettersInHand.splice(letterIndex, 1);
     }
-  },
-
-  // usesAvailableLetters(input, lettersInHand) {
-  //   for (let i = 0; i < input.length; i += 1) {
-  //     let letter = input.charAt(i);
-  //     if (!lettersInHand.includes(letter)) {
-  //       return false;
-  //     }
-  //     let letterIndex = lettersInHand.indexOf(letter);
-  //     lettersInHand.splice(letterIndex, 1);
-  //   }
-  // },
-      
-
+      return true;
+    }
   }
+
+
+  
   console.log(Adagrams.drawLetters());
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
