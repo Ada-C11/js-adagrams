@@ -20,7 +20,8 @@ const Adagrams = {
     for (let char of input) {
         if (possibleLetters.includes(char)) {
           possibleLetters.splice(possibleLetters.indexOf(char), 1);
-        } else {
+        } 
+        else {
           return false;
         }
     }
@@ -39,6 +40,25 @@ const Adagrams = {
       score += 8;
     }
     return score;
+  },
+
+  highestScoreFrom(words) {
+    let winner = {
+      word: "",
+      score: 0,
+    };
+
+  for (let word of words) {
+    if (this.scoreWord(word) > winner.score){
+      winner = { word: word, score: this.scoreWord(word) };
+    } 
+    else if (this.scoreWord(word) > winner.score){
+      if (((word.length < winner.word.length) || (word.length == 10)) && (winner.word.length != 10)) {
+        winner = { word: word, score: thisscoreWord(word) };
+        }
+      }
+    }
+  return winner;
   }
 }
 
