@@ -1,7 +1,7 @@
-import { Hash } from "crypto";
+import { Hash } from "crypto"; // what does this do? code works without it...
 
 const Adagrams = {
-  letterValues: {
+  letterFrequencies: {
     'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2, 'G': 3, 'H': 2, 'I': 9,
     'J': 1, 'K': 1, 'L': 4, 'M': 2, 'N': 6, 'O': 8, 'P': 2, 'Q': 1, 'R': 6,
     'S': 4, 'T': 6, 'U': 4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 'Z': 1
@@ -10,11 +10,11 @@ const Adagrams = {
   makeBag() {
     let letterBag = [];
 
-    for (let key in this.letterValues) {
-      let value = this.letterValues[key];
+    for (let letter in this.letterFrequencies) {
+      let frequency = this.letterFrequencies[letter];
 
-      for (let i = 0; i < value; i++) {
-        letterBag.push(key);
+      for (let i = 0; i < frequency; i++) {
+        letterBag.push(letter);
       }
     }
 
@@ -56,16 +56,10 @@ const Adagrams = {
   scoreWord(word) {
     let score = 0;
     const pointValues = {
-      1: 'AEIOULNRST',
-      2: 'DG',
-      3: 'BCMP',
-      4: 'FHVWY',
-      5: 'K',
-      8: 'JX',
-      10: 'QZ'
+      1: 'AEIOULNRST', 2: 'DG', 3: 'BCMP', 4: 'FHVWY', 5: 'K', 8: 'JX', 10: 'QZ'
     }
 
-    word.toUpperCase().split('').forEach(function (letter) {
+    word.toUpperCase().split('').forEach((letter) => {
       for (let letterPoints in pointValues) {
         let lettersString = pointValues[letterPoints];
         
