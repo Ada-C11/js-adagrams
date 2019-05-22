@@ -1,7 +1,5 @@
-const Adagrams = {
-  drawLetters() {
-    // const availableHand = ["a", "a", "a", "a", "a", "a", "a", "a", "a", "b", "b", "c", "c", "d", "d", "d", "d", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "f", "f", "g", "g", "g", "h", "h", "i", "i", "i", "i", "i", "i", "i", "i", "i", "j", "k", "l", "l", "l", "l", "m", "m", "n", "n", "n", "n", "n", "n", "o", "o", "o", "o", "o", "o", "o", "o", "p", "p", "q", "r", "r", "r", "r", "r", "r", "s", "s", "s", "s", "t", "t", "t", "t", "t", "t", "u", "u", "u", "u", "v", "v", "w", "w", "x", "y", "y", "z"]
-
+class Adagrams {
+  static drawLetters() {
     const availableHand = []
     for (let i = 0; i < 9; i++) {
       availableHand.push("a");
@@ -60,8 +58,9 @@ const Adagrams = {
     }
 
     return hand
-  },
-  usesAvailableLetters (input, lettersInHand) {
+  }
+
+  static usesAvailableLetters (input, lettersInHand) {
     for (let character of input) {
       let index = lettersInHand.indexOf(character);
       if (index === -1) {
@@ -71,8 +70,9 @@ const Adagrams = {
       }
     }
     return true;
-  },
-  scoreWord (word) {
+  }
+
+  static scoreWord (word) {
    const scoreChart = {
       "a":1,
       "b":3,
@@ -102,7 +102,7 @@ const Adagrams = {
       "z":10
     }
 
-    let score = 0
+    let score = 0;
 
     for (let character of word) {
       score += scoreChart[character.toLowerCase()];
@@ -113,8 +113,9 @@ const Adagrams = {
     }
 
     return score;
-  },
-  highestScoreFrom (words) {
+  }
+
+  static highestScoreFrom (words) {
     let bestWord = ""
     let bestScore = 0
 
@@ -137,7 +138,7 @@ const Adagrams = {
     const best = {word: bestWord, score: bestScore}
     return best;
   }
-};
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
