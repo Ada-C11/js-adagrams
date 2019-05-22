@@ -1,5 +1,5 @@
-const Adagrams = {
-  drawLetters() {
+class Adagrams {
+  static drawLetters() {
     const letterPool = [];
 
     const adagramsCount = {
@@ -21,9 +21,9 @@ const Adagrams = {
 
     return playerHand;
     // Implement this method for wave 1
-  },
+  }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     input = input.toUpperCase();
     let letters = lettersInHand
 
@@ -36,9 +36,9 @@ const Adagrams = {
     }
 
     return true;  
-  }, 
+  }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     word = word.toUpperCase();
     let score = 0;
 
@@ -55,9 +55,9 @@ const Adagrams = {
     }
 
     return score;
-  }, 
+  } 
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let maxScore = 0;
     let winningWord = '';
 
@@ -82,7 +82,7 @@ const Adagrams = {
     return winner;
   }
   
-};
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
