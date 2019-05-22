@@ -63,10 +63,10 @@ const Adagrams = {
         count += 1;
       }
     }
-  
+    
     return count;
-
   },
+
   drawLetters() {
     let letterDraw = [];
     Object.keys(letterPool).forEach((letter) => {
