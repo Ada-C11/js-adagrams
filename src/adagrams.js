@@ -9,6 +9,18 @@ const Adagrams = {
     }
     return hand;
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    const inputArr = input.split('');
+    for (const char in inputArr) {
+      if (!lettersInHand.includes(inputArr[char])) {
+        return false;
+      }
+      const ltrIndex = lettersInHand.indexOf(inputArr[char]);
+      lettersInHand.splice(ltrIndex, 1);
+    }
+    return true;
+  },
 };
 
 // Do not remove this line or your tests will break!
