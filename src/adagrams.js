@@ -1,6 +1,5 @@
 const Adagrams = {
   drawLetters() {
-    // Implement this method for wave 1
     const letterDistribution = {
       A: 9, B: 2, C: 2, D: 4, E: 12,
       F: 2, G: 3, H: 2, I: 9, J: 1,
@@ -80,7 +79,7 @@ const Adagrams = {
       let word = words[i];
       let score = this.scoreWord(word);
 
-      if(score < result.score) {
+      if (score < result.score) {
         continue;
       }
 
@@ -93,7 +92,7 @@ const Adagrams = {
         continue;
       }
 
-      if (word.length === 10 || words[i].length < result.word.length) {
+      if (word.length === 10 || word.length < result.word.length) {
         result.word = word;
         continue;
       }
