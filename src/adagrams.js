@@ -135,12 +135,9 @@ const Adagrams = {
         winningWord['score'] = this.scoreWord(word);
       };
     };
-    return winningWord
-    // console.log(winningWord)
+    return winningWord;
   },
 };
-
-// console.log(Adagrams.highestScoreFrom(['z', 'zzzzzzz']))
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
