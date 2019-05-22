@@ -59,20 +59,20 @@ const Adagrams = {
   drawLetters() {
     // Implement this method for wave 1
     let letterDraw = [];
-    Object.keys(letterPool).forEach(function (letter) {
-    let i = letterPool[letter];
-  
 
-    while (i > 0) {
-      letterDraw.push(letter)
-      i -= 1
-    }
-  })
+    Object.keys(letterPool).forEach((letter) => {
+      let i = letterPool[letter];
+  
+      while (i > 0) {
+        letterDraw.push(letter)
+        i -= 1
+      }
+    })
 
     let hand = [];
     for (let i = 10; i > 0; i -=1) {
-      let random_letter = letterDraw[Math.floor(Math.random()*letterDraw.length)];
-      hand.push(random_letter);
+      let randomLetter = letterDraw[Math.floor(Math.random()*letterDraw.length)];
+      hand.push(randomLetter);
     }
 
     return hand;
@@ -121,15 +121,7 @@ const Adagrams = {
   },
 
    highestScoreFrom(words) {
-     let tieBreaker = function tieBreaker(current, challenger) {
-       let currentLength = current.length;
-      if (currentLength == 10) {
-        return current;
-      } else if (challenger.length == 10) {
-        return challenger;
-      }
-     }
-
+  
     let winningWord = {
       "word": words[0],
       "score": this.scoreWord(words[0])
