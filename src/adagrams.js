@@ -25,7 +25,7 @@ const letterPool = {
   "X": 1,
   "Y": 2,
   "Z": 1
-}
+};
 
 const letterScores = {
   "A": 1,
@@ -54,12 +54,10 @@ const letterScores = {
   "X": 8,
   "Y": 4,
   "Z": 10
-}
+};
 const Adagrams = {
   drawLetters() {
-    // Implement this method for wave 1
     let letterDraw = [];
-
     Object.keys(letterPool).forEach((letter) => {
       let i = letterPool[letter];
   
@@ -79,11 +77,8 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-
     const countItems = (collection, letter) => {
-
       let count = 0;
-
       for(let i = 0; i < collection.length; i += 1) {
         if (collection[i] === letter) {
           count += 1;
@@ -106,15 +101,15 @@ const Adagrams = {
   },
 
   scoreWord(word) {
-
     word = word.toUpperCase();
+
     let score = 0;
     for(let i = 0; i < word.length; i += 1) {
-      score += letterScores[word[i]]
+      score += letterScores[word[i]];
     }
 
     if (word.length > 6) {
-      score += 8
+      score += 8;
     }
 
     return score;
@@ -147,9 +142,3 @@ const Adagrams = {
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
-
-  //   for(let i = 0; i < collection.length; i += 1) {
-    //    if collection[i] === letter {
-    //      count += 1
-    //    }
-    // }
