@@ -57,9 +57,52 @@ const Adagrams = {
     };
     return true;
   },
+
+  scoreWord (word) {
+    let total = 0;
+    word = word.toUpperCase();
+    
+
+    for (let i = 0; i < word.length; i +=1) {
+      console.log('hi')
+      console.log(word.charAt(i))
+      console.log(total)
+      console.log(`i: ${i}`)
+      switch (word.charAt(i)) {
+        case 'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T' :
+          total += 1;
+          console.log('hi again');
+          break;
+        case 'D', 'G' :
+          total += 2;
+          break;
+        case 'B', 'C', 'M', 'P' :
+          total += 3;
+          break;
+        case 'F', 'H', 'V', 'W', 'Y' :
+          total += 4
+          break;
+        case 'K' :
+          total += 5;
+          break;
+        case 'J', 'X' :
+          total += 8;
+          break;
+        case 'Q', 'Z' :
+          total += 10;
+          break;
+      };
+    };
+
+    if (word.length >= 7) {
+      total += 8;
+    };
+
+    return total;
+  },
 };
 
-// console.log(Adagrams.drawLetters())
+console.log(Adagrams.scoreWord('zance'))
 
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
