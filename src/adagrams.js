@@ -85,7 +85,6 @@ const Adagrams = {
 
     words.forEach((word) => {
       const score = this.scoreWord(word);
-      // console.log(highestScore);
 
       if (score > highestScore.score) {
         highestScore.word = word;
