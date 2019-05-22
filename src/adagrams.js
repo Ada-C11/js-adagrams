@@ -4,7 +4,7 @@ import { Z_ASCII } from "zlib";
 const Adagrams = {
   drawLetters() {
     // Implement this method for wave 1
-    const pool ={
+    const pool = {
       A: 9,
       B: 2,
       C: 2,
@@ -30,14 +30,26 @@ const Adagrams = {
       W: 2,
       X: 1,
       Y: 2,
-      Z: 1,
+      Z: 1
     }
-    
-    let hand = []
-    for(const letter in pool)
-    return hand
+
+    const letters = [];
+    for(let letter in letters) {
+      for(let i = 0; i < pool[letter]; i += 1) {
+        hand.push(letter);
+      }
+    }
+
+    let hand = [];
+    for(let i = 0; i < 10; i += 1) {
+      const letterIndex = Math.floor(Math.random() * (letters.length));
+      hand.push(letters[letterIndex]);
+      letters.splice(letterIndex, 1);
+    }
+
+    return hand;
   },
-};
+  }
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
