@@ -56,6 +56,17 @@ const letterScores = {
   "Z": 10
 };
 const Adagrams = {
+  countItems(collection, letter) {
+    let count = 0;
+    for(let i = 0; i < collection.length; i += 1) {
+      if (collection[i] === letter) {
+        count += 1;
+      }
+    }
+  
+    return count;
+
+  },
   drawLetters() {
     let letterDraw = [];
     Object.keys(letterPool).forEach((letter) => {
@@ -77,21 +88,11 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    const countItems = (collection, letter) => {
-      let count = 0;
-      for(let i = 0; i < collection.length; i += 1) {
-        if (collection[i] === letter) {
-          count += 1;
-        }
-      }
-    
-      return count;
 
-    }
 
     let result;
     for(let i = 0; i < input.length; i += 1) {
-      result = lettersInHand.includes(input[i]) && countItems(lettersInHand, input[i]) >= countItems(input, input[i]);
+      result = lettersInHand.includes(input[i]) && this.countItems(lettersInHand, input[i]) >= this.countItems(input, input[i]);
       
       if (!result) {
         return result;
