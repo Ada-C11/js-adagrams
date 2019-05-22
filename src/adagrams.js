@@ -93,6 +93,37 @@ const Adagrams = {
     }
 
     return score;
+  }, 
+
+  highestScoreFrom(words) {
+    let maxScore = 0;
+    let winningWord = '';
+
+    for (let word of words) {
+      if (this.scoreWord(word) > maxScore) {
+        maxScore = this.scoreWord(word);
+        winningWord = word; 
+      }
+
+      if (maxScore == this.scoreWord(word)) {
+        if (word.length == 10 && winningWord.length != 10 ) {
+          winningWord = word;
+        } else if  (word.length != 10 && winningWord.length == 10 ) {
+          winningWord = winningWord;
+        } else {
+          if (word.length < winningWord.length) {
+            winningWord = word;
+          }
+        }
+      }
+    }
+
+    let winner = {
+      word: winningWord, 
+      score: maxScore
+    };
+
+    return winner;
   }
   
 };
