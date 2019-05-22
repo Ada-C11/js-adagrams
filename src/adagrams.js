@@ -33,6 +33,7 @@ const Adagrams = {
 
     // don't alter orginal array by creating new array and pushing letters into it
     let letters = [];
+    // const randomLetterPool = pool.slice();
     for(let letter in pool) {
       for(let i = 0; i < pool[letter]; i += 1) {
         letters.push(letter);
@@ -61,6 +62,15 @@ const Adagrams = {
     }
   }
 
+  scoreWord(word) {
+    const scoreKey = new Map (
+      ['A', 'E', 'I', 'U', 'N', 'R', ]
+    )
+
+
+
+
+  }
 
   
   console.log(Adagrams.drawLetters());
