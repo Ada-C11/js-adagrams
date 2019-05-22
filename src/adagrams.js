@@ -2,52 +2,14 @@ const Adagrams = {
   drawLetters() {
     const letterPool = [];
 
-    for (let i = 0; i < 9; i += 1) {
-      letterPool.push('A');
-      letterPool.push('I');
-    }
+    const adagramsCount = {
+       'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2, 'G': 3, 'H': 2, 'I': 9, 'J': 1, 'K': 1, 'L': 4, 'M': 2, 'N': 6, 'O': 8, 'P': 2, 'Q': 1, 'R': 6, 'S': 4, 'T': 6, 'U': 4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 'Z': 1
+    };
 
-    for (let i = 0; i < 2; i += 1) {
-      letterPool.push('B');
-      letterPool.push('C');
-      letterPool.push('F');
-      letterPool.push('H');
-      letterPool.push('M');
-      letterPool.push('P');
-      letterPool.push('V');
-      letterPool.push('W');
-      letterPool.push('Y');
-    }
-
-    for (let i = 0; i < 4; i += 1) {
-      letterPool.push('D');
-      letterPool.push('L');
-      letterPool.push('S');
-      letterPool.push('U');
-    }
-
-    for (let i = 0; i < 12; i += 1) {
-      letterPool.push('E');
-    }
-
-    for (let i = 0; i < 3; i += 1) {
-      letterPool.push('G');
-    }
-  
-    letterPool.push('J');
-    letterPool.push('K');
-    letterPool.push('Q');
-    letterPool.push('X');
-    letterPool.push('Z');
-
-    for (let i = 0; i < 6; i += 1) {
-      letterPool.push('N');
-      letterPool.push('R');
-      letterPool.push('T');
-    }
-
-    for (let i = 0; i < 8; i += 1) {
-      letterPool.push('O');
+    for (let key in adagramsCount) {
+      for (let i = 0; i < adagramsCount[key]; i ++) {
+        letterPool.push(key);
+      }
     }
 
     let playerHand = [];
