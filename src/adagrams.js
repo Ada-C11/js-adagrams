@@ -20,21 +20,41 @@ const Adagrams = {
     return lettersInHand;
   },
   usesAvailableLetters(input, lettersDrawn){
-    for (ltr in input) {
-    
+    let lettersDrawnCopy = [...lettersDrawn];
+    let hand = input.split('');
+
+    for (let ltr in hand) {
+      if(lettersDrawnCopy.includes(hand[ltr])){
+        lettersDrawnCopy.splice(lettersDrawnCopy.indexOf(hand[ltr]), 1);
+      } else {
+        return false;
+      }
+    }
+    return true;
   },
+  scoreWord(word){
+    const scoreRubric = { 'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1,
+      'N': 1, 'R': 1, 'S': 1, 'T':1, 
+      'D': 2, 'G': 2, 
+      'B': 3, 'C': 3, 'M': 3, 'P': 3,
+      'F': 4, 'H': 4, 'V': 4, 'W': 4, 'Y': 4, 
+      'K': 5, 
+      'J': 8, 'X':8, 
+      'Q': 10, 'Z': 10 
+    }
+    let total = 0;
+    const keys = word.split('')
+
+    for (const key in keys) {
+      total += scoreRubric.key
+    }
+    return total;
+  },
+
+  highestScoreFrom(){
+
+  }
 };
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
-
-
-// if(!lettersDrawn.includes(input[ltr]) {
-//   return false
-// } else {
-//   let found = lettersDrawn.splice(ltr)
-// }
-// }
-// if(found.length === input.length) {
-// return true
-// }
