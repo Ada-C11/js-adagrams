@@ -13,8 +13,10 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    input = input.toUpperCase()
-    let lettersObject = {}
+    input = input.toUpperCase();
+
+    let lettersObject = {};
+
     lettersInHand.forEach(function (letter) {
       if (lettersObject[letter] !== undefined) {
         lettersObject[letter] += 1;
@@ -23,9 +25,9 @@ const Adagrams = {
       }
     });
 
-    const inputArray = input.split("")
+    const inputArray = input.split("");
 
-    let passes = true
+    let passes = true;
 
     inputArray.forEach(function (letter) {
       if (lettersObject[letter] !== undefined) {
