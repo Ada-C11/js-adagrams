@@ -64,31 +64,45 @@ const Adagrams = {
     
 
     for (let i = 0; i < word.length; i +=1) {
-      console.log('hi')
-      console.log(word.charAt(i))
-      console.log(total)
-      console.log(`i: ${i}`)
       switch (word.charAt(i)) {
-        case 'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T' :
+        case 'A':
+        case 'E': 
+        case 'I':
+        case 'O': 
+        case 'U': 
+        case 'L': 
+        case 'N': 
+        case 'R': 
+        case 'S':
+        case 'T':
           total += 1;
-          console.log('hi again');
           break;
-        case 'D', 'G' :
+        case 'D':
+        case 'G':
           total += 2;
           break;
-        case 'B', 'C', 'M', 'P' :
+        case 'B':
+        case 'C':
+        case 'M':
+        case 'P':
           total += 3;
           break;
-        case 'F', 'H', 'V', 'W', 'Y' :
+        case 'F':
+        case 'H':
+        case 'V': 
+        case 'W':
+        case 'Y':
           total += 4
           break;
-        case 'K' :
+        case 'K':
           total += 5;
           break;
-        case 'J', 'X' :
+        case 'J':
+        case 'X':
           total += 8;
           break;
-        case 'Q', 'Z' :
+        case 'Q':
+        case 'Z':
           total += 10;
           break;
       };
@@ -102,7 +116,7 @@ const Adagrams = {
   },
 };
 
-console.log(Adagrams.scoreWord('zance'))
+// console.log(Adagrams.scoreWord('zance'))
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
