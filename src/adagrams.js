@@ -4,9 +4,11 @@ const letterPool = {
 }
 
 const Adagrams = {
-  letterCount(letter, container) {
-    return container.match(/letter/g).length
-  },
+  // return the number of times a single (case insensitive) char occurs inside the container it's in
+  // letterCount(char, container) {
+  //   return (container.match(/char/gi) || []).length
+  // },
+
 
   drawLetters() {
     const keys = Object.keys(letterPool);
@@ -21,16 +23,26 @@ const Adagrams = {
     return lettersInHand;
   },
 
+
+
   usesAvailableLetters(input, lettersInHand) {
-    let result;
+    const count = function count(char, container) {
+      return (container.match(/char/gi) || []).length;
+    };
+
+    let result = true;
+    let stringifiedHand = lettersInHand.join('')
     for (let letter of input) {
       if (!lettersInHand.includes(letter)) {
-        result = false
-      } else { result = true }
+        result = false;
+      }
+      if (count(letter, input) > count(letter, stringifiedHand)) {
+        result = false;
+      }
     }
     return result;
   },
-};
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
