@@ -120,6 +120,15 @@ const Adagrams = {
   },
 
    highestScoreFrom(words) {
+     let tieBreaker = function tieBreaker(current, challenger) {
+       console.log(`********* ${current}`)
+      if (current.length == 10) {
+        return current;
+      } else if (challenger.length == 10) {
+        return challenger;
+      }
+     }
+
     let winningWord = {
       word: words[0],
       score: this.scoreWord(words[0])
@@ -128,6 +137,12 @@ const Adagrams = {
     words.forEach( (word) => {
       let score = this.scoreWord(word);
       if (score > winningWord.score) {
+        winningWord.word = word;
+        winningWord.score = score;
+      } else if (score == winningWord.score && word.length == 10) {
+        winningWord.word = word;
+        winningWord.score = score;
+      } else if (score == winningWord.score && word.length < winningWord.word.length) {
         winningWord.word = word;
         winningWord.score = score;
       }
