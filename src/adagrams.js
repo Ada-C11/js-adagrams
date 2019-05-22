@@ -65,11 +65,61 @@ if (letterVerify[char] === undefined) {
 }
 });
 
-
 return passes;
 
   },
 
+scoreWord(word) {
+
+const point1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"];
+const point2 = ['D', 'G'];
+const point3 = ['B', 'C', 'M', 'P'];
+const point4 = ['F', 'H', 'V', 'W', 'Y'];
+const point5 = ['K'];
+const point8 = ['J', 'X'];
+const point10 = ['Q', 'Z'];
+
+const letterValue = {};
+
+point1.forEach (function(letter) {
+  letterValue[letter] = 1;
+});
+
+point2.forEach (function(letter){
+  letterValue[letter] = 2;
+});
+
+point3.forEach (function(letter){
+  letterValue[letter] = 3;
+});
+
+point4.forEach (function(letter){
+  letterValue[letter] = 4;
+});
+
+point5.forEach (function(letter){
+  letterValue[letter] = 5;
+});
+
+point8.forEach (function(letter){
+  letterValue[letter] = 8;
+});
+
+point10.forEach (function(letter){
+  letterValue[letter] = 10;
+});
+
+
+const wordArray = word.toUpperCase().split('');
+let score = 0;
+wordArray.forEach (function(char){
+  score += letterValue[char];
+});
+
+return score;
+
+
+},
 };
 
 // Do not remove this line or your tests will break!
