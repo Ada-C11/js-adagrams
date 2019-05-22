@@ -52,9 +52,9 @@ const Adagrams = {
     if (this.scoreWord(word) > winner.score){
       winner = { word: word, score: this.scoreWord(word) };
     } 
-    else if (this.scoreWord(word) > winner.score){
+    else if (this.scoreWord(word) == winner.score){
       if (((word.length < winner.word.length) || (word.length == 10)) && (winner.word.length != 10)) {
-        winner = { word: word, score: thisscoreWord(word) };
+        winner = { word: word, score: this.scoreWord(word) };
         }
       }
     }
