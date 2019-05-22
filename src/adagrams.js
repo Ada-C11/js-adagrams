@@ -86,8 +86,9 @@ const Adagrams = {
       G: 2, T: 1, H: 4, U: 1, I: 1, V: 4, J: 8, W: 4, K: 5, X: 8, L: 1, Y: 4, M: 3, Z: 10,
     }
     let total = 0;
+    word = word.toUpperCase();
     const wordArray = word.split('');
-    if (wordArray.length > 7) {
+    if (wordArray.length > 6) {
       total += 8;
     }
     wordArray.forEach(letter => total += letterScore[letter]);
