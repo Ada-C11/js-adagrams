@@ -72,8 +72,8 @@ const Adagrams = {
       }
     });
     winning.word = bestWord;
-      winning.score = bestScore;
-      return winning;
+    winning.score = bestScore;
+    return winning;
   }
 };
 
