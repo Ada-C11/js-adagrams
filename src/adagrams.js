@@ -51,13 +51,19 @@ class Adagrams {
       availableHand.push("o");
     }
   
-    const hand = []
+    const hand = [];
 
     for (let i = 0; i < 10; i++) {
-      hand.push(availableHand[Math.floor(Math.random() * availableHand.length)].toUpperCase())
+      let letter = availableHand[Math.floor(Math.random() * availableHand.length)].toUpperCase()
+      hand.push(letter)
+      availableHand.splice(availableHand.indexOf(letter, 1));
     }
 
-    return hand
+    for (let letter of hand) {
+      availableHand.push(letter);
+    }
+
+    return hand;
   }
 
   static usesAvailableLetters (input, lettersInHand) {
