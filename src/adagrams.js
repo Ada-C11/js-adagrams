@@ -51,16 +51,24 @@ const Adagrams = {
     let hand = [];
     for (let i = 0; i < 10; i += 1) {
       let drawnIndex = Math.floor(Math.random() * pool.length);
-      console.log(`Pool length is ${pool.length}`)
       hand.push(pool[drawnIndex]);
       pool.splice(drawnIndex, 1);
     }
-    console.log(hand);
     return hand;
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    for (let i = 0; i < input.length; i += 1) {
+      if (lettersInHand.includes(input[i])) {
+        let pos = lettersInHand.indexOf(input[i]);
+        lettersInHand.splice(pos, 1);
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
 };
 
-Adagrams.drawLetters()
-
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
