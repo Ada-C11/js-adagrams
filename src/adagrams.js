@@ -44,8 +44,45 @@ const Adagrams = {
     if (word.length >= 7) score += 8;
     return score;
   },
+
+  highestScoreFrom(words) {
+    // const scores = [];
+    // for (let i = 0; i < words.length; i += 1) scores[i] = this.scoreWord(words[i]);
+
+    const scores = words.map((word) => this.scoreWord(word));
+    const maxScore = scores.reduce((a,b) => Math.max(a,b));
+    const ties = [];
+    let bestWord;
+    for (let i = 0; i < words.length; i += 1) {
+      // console.log(this.scoreWord(words[i]));
+      // if (this.scoreWord(words[i]) == maxScore) {
+      //   console.log(words[i]);
+      //   if (words[i].length == 10) {
+      //     bestWord[words[i]] = maxScore;  
+      //   }  else  { 
+      //     ties.push(words[i]); 
+      //   }
+      // }
+      if (this.scoreWord(words[i]) == maxScore) {
+        // console.log(words[i]);
+        if (words[i].length == 10) bestWord = words[i];  
+        else ties.push(words[i]);
+      }
+    }
+    // const shortWord = ties.reduce((a,b) => Math.min(a.length, b.length));
+    if (!bestWord) bestWord = ties.reduce((a,b) => Math.min(a.length, b.length));
+    const bestWordObj = { word: bestWord, score: maxScore };
+    return bestWordObj;
+    // console.log(scores);
+    // console.log(maxScore);
+    // console.log(bestWord);
+    // console.log(ties);
+  },
 };
 // Adagrams.drawLetters()
 // console.log(Adagrams.drawLetters());
+
+console.log(Adagrams.highestScoreFrom(['AAAAAAAAAA', 'BBBBBB']));
+
 // Do not remove this line or your tests will break!
 export default Adagrams;
