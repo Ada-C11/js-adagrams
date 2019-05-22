@@ -1,7 +1,8 @@
 const _ = require('lodash');
-const Adagrams = {
+class Adagrams {
 
-  drawLetters() {
+
+  static drawLetters() {
     const letters = [];
     const letter_freq = new Map([
       ['A', 9], ['N', 6], ['B', 2], ['O', 8], ['C', 2], ['P', 2], ['D', 4], 
@@ -14,9 +15,9 @@ const Adagrams = {
         }  
     }
     return _.sampleSize(letters, 10)
-  },
+  }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     if (input.length > lettersInHand.length){
       return false;
     }
@@ -30,9 +31,9 @@ const Adagrams = {
         }
     }
     return true;
-  },
+  }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     const letterScore = new Map([
       ['A', 1], ['N', 1], ['B',3], ['O',1], ['C', 3], ['P', 3], ['D', 2], 
       ['Q', 10], ['E', 1], ['R', 1], ['F', 4], ['S', 1],['G', 2], ['T', 1], 
@@ -47,9 +48,9 @@ const Adagrams = {
       score += 8;
     }
     return score;
-  },
+  }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let winner = {
       word: "",
       score: 0,
