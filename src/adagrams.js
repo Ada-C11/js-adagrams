@@ -12,7 +12,7 @@ const Adagrams = {
     const letterBank = []
 
     for (let key in letterPool) {
-      for (let i = 0; i < letterPool[key]; i += 1 ) {
+      for (let i = letterPool[key]; i > 0; i -= 1 ) {
         letterBank.push(key);
       }
     }
