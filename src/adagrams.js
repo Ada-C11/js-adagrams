@@ -108,6 +108,32 @@ const Adagrams = {
       score += 8;
     }
     return score;
+  },
+
+  highestScoreFrom(words) {
+    let winningWord = {
+      word: words[0],
+      score: Adagrams.scoreWord(words[0]),
+    };
+    for (let i = 0; i < words.length; i += 1) {
+      let submittedWord = words[i];
+      let wordScore = Adagrams.scoreWord(submittedWord);
+      if (wordScore > winningWord["score"]) {
+        winningWord["word"] = submittedWord;
+        winningWord["score"] = wordScore;
+      } else if (wordScore == winningWord["score"]) {
+        console.log(`The length of the submitted word ${submittedWord} is ${submittedWord.length}`);
+        console.log(`The length of the winning ${winningWord["word"]} is ${winningWord["word"].length}`);
+        if (submittedWord.length == 10 && !(winningWord["word"].length == 10)) {
+          winningWord["word"] = submittedWord;
+          winningWord["score"] = wordScore;
+        } else if (submittedWord.length < winningWord["word"].length && winningWord["word"].length < 10) {
+          winningWord["word"] = submittedWord;
+          winningWord["score"] = wordScore;
+        }
+      }
+    }
+    return winningWord;
   }
 };
 
