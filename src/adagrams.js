@@ -64,6 +64,31 @@ const Adagrams = {
     
     return score;
   },
+
+  tiebreaker(word1, word2) {
+    if (word1.length === 10) {return word1;}
+    if (word2.length === 10) {return word2;}
+    if (word1.length < word2.length) {return word1;}
+    if (word2.length < word1.length) {return word2;}
+    return word1;
+  },
+
+  highestScoreFrom(words) {
+    let highScore = 0;
+    let highWord = "";
+    
+    words.forEach(function(word) {
+      const score = Adagrams.scoreWord(word);
+      if(score > highScore) {
+        highScore = score;
+        highWord = word;
+      } else if (score === highScore) {
+        highWord = Adagrams.tiebreaker(highWord, word);
+      } 
+    });
+
+    return {word: highWord, score: highScore};
+  },
 };
 
 
