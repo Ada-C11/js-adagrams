@@ -63,20 +63,55 @@ const Adagrams = {
         lettersHash[letter] = 1;
       }
     })
+
     input.toUpperCase();
+    let boolean = true;
     const inputArray = input.split('');
-    inputArray.forEach ( function(item) {
-      if (lettersHash[item]) {
-        lettersHash[item] -= 1;
-        if (lettersHash[item] < 0) {
-          return false;
+    inputArray.forEach ( function(letter) {
+      if (lettersHash[letter]) {
+        lettersHash[letter] -= 1;
+        if (lettersHash[letter] < 0) {
+          boolean = false;
         }
       } else {
-        return false;
+        boolean = false;
       }
     })
-    return true;
+    return boolean;
   },  
+
+  scoreWord(word){
+    const letterScore = {
+      A: 1, N: 1, B: 3, O: 1, C: 3, P: 3, D: 2, Q: 10, E: 1, R: 1, F: 4, S: 1,
+      G: 2, T: 1, H: 4, U: 1, I: 1, V: 4, J: 8, W: 4, K: 5, X: 8, L: 1, Y: 4, M: 3, Z: 10,
+    }
+    let total = 0;
+    const wordArray = word.split('');
+    if (wordArray.length > 7) {
+      total += 8;
+    }
+    wordArray.forEach(letter => total += letterScore[letter]);
+    return total;
+  }
 };
+
+// # Returns a single hash that represents the data of a winning word and its score.
+// def highest_score_from(words)
+//   winner = {
+//     word: "",
+//     score: 0,
+//   }
+
+//   words.each do |word|
+//     if score_word(word) > winner[:score]
+//       winner = { word: word, score: score_word(word) }
+//     elsif score_word(word) == winner[:score]
+//       if ((word.length < winner[:word].length) || (word.length == 10)) && (winner[:word].length != 10)
+//         winner = { word: word, score: score_word(word) }
+//       end
+//     end
+//   end
+//   return winner
+// end
 
 export default Adagrams;
