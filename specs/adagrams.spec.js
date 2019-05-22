@@ -45,7 +45,7 @@ describe('Adagrams', () => {
     });
   });
 
-  describe.skip('scoreWord', () => {
+  describe('scoreWord', () => {
     const expectScores = (wordScores) => {
       Object.entries(wordScores).forEach(([word, score]) => {
         expect(Adagrams.scoreWord(word)).toBe(score);
@@ -84,7 +84,7 @@ describe('Adagrams', () => {
     });
   });
 
-  describe.skip('highestScoreFrom', () => {
+  describe('highestScoreFrom', () => {
     it('returns a hash that contains the word and score of best word in an array', () => {
       const words = ['X', 'XX', 'XXX', 'XXXX'];
       const correct = { word: 'XXXX', score: Adagrams.scoreWord('XXXX') };
@@ -101,9 +101,11 @@ describe('Adagrams', () => {
 
     describe('in case of tied score', () => {
       const expectTie = (words) => {
-        const scores = words.map(Adagrams.scoreWord);
+        const scores = words.map((word) => Adagrams.scoreWord(word));
         const highScore = scores.reduce((h, s) => h < s ? s : h, 0);
         const tiedWords = scores.filter((s) => s == highScore);
+        console.log(scores)
+        console.log(words)
 
         // Expect at least two tied words
         expect(tiedWords.length).toBeGreaterThan(1);
@@ -113,6 +115,7 @@ describe('Adagrams', () => {
         const words = ['AAAAAAAAAA', 'BBBBBB'];
         const correct = { word: 'AAAAAAAAAA', score: Adagrams.scoreWord('AAAAAAAAAA') };
         expectTie(words);
+     
 
         expect(Adagrams.highestScoreFrom(words)).toEqual(correct);
         expect(Adagrams.highestScoreFrom(words.reverse())).toEqual(correct);

@@ -39,18 +39,60 @@ const Adagrams = {
       points += this.letterValues[letter]
     });
 
-    if (points.length > 6) {
+    if (word.length > 6) {
       points = points + 8;
     }
+
     return points
+  },
+  
+  highestScoreFrom(words) {
+    let winningWords = []
+    let winningScore = 0
+
+    words.forEach((word) => {
+      let score = this.scoreWord(word)
+      if (score > winningScore) {
+        winningScore = score
+      }
+    });
+
+    words.forEach((word) => {
+      let score = this.scoreWord(word)
+      if (score === winningScore) {
+        winningWords.push(word)
+      }
+    });
+
+    let winningWord = winningWords[0]
+
+    if (winningWords.length > 1) {
+
+      if (winningWords.some((word) => word.length === 10) === true) {
+        winningWord = winningWords.find((word) => word.length === 10)
+      }
+      else {
+        let shortest = winningWord.length
+        winningWords.forEach((word) => {
+          if(word.length < shortest) {
+            shortest = word.length
+          }
+        })
+        winningWord = winningWords.find((word) => word.length === shortest)
+
+      }
+    }
+    
+    let winningWordsHash = {"word" : winningWord, "score": winningScore}
+    return winningWordsHash
   }
 };
 
 
-
 // console.log(Adagrams.usesAvailableLetters("b".split(""), "brownfaaoxx".split("")));
 // console.log(Adagrams.drawLetters());
-// console.log(Adagrams.scoreWord("ax"));
+// console.log(Adagrams.scoreWord("xxxxxxx"));
+// console.log(Adagrams.highestScoreFrom(['AAAAAAAAAA', 'BBBBBB']));
 
 
 // Do not remove this line or your tests will break!
