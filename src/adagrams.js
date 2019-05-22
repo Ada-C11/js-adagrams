@@ -56,7 +56,7 @@ class Adagrams {
     for (let i = 0; i < 10; i++) {
       let letter = availableHand[Math.floor(Math.random() * availableHand.length)].toUpperCase()
       hand.push(letter)
-      availableHand.splice(availableHand.indexOf(letter, 1));
+      availableHand.splice(availableHand.indexOf(letter), 1);
     }
 
     for (let letter of hand) {
@@ -132,7 +132,7 @@ class Adagrams {
       } 
       if (bestScore === this.scoreWord(word)) {
         if (bestWord.length === 10) {
-          bestWord = bestWord;
+          break;
         } else if (word.length === 10) {
           bestWord = word;
         } else if (word.length < bestWord.length) {
