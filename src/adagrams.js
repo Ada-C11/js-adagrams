@@ -1,5 +1,19 @@
 import { ENGINE_METHOD_DIGESTS } from "constants";
 
+const hashIn = (arrOfLetters) => {
+  let hash = {};
+
+  arrOfLetters.forEach( (letter) => {
+    if (hash.hasOwnProperty(letter)) {
+      hash[letter] += 1;
+    }
+    else {
+      hash[letter] = 1;
+    }
+  })
+  return hash;
+}
+
 const Adagrams = {
   drawLetters() {
     // Implement this method for wave 1
@@ -13,16 +27,7 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    let lettersHash = {};
-
-    lettersInHand.forEach( (letter) => {
-      if (lettersHash.hasOwnProperty(letter)) {
-        lettersHash[letter] += 1;
-      }
-      else {
-        lettersHash[letter] = 1;
-      }
-    })
+    let lettersHash = hashIn(lettersInHand);
     
     for (let i = 0; i < input.length; i += 1) {
       if (lettersHash.hasOwnProperty(input[i])) {
