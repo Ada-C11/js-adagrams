@@ -117,6 +117,22 @@ const Adagrams = {
     }
 
     return score;
+  },
+
+   highestScoreFrom(words) {
+    let winningWord = {
+      word: words[0],
+      score: this.scoreWord(words[0])
+    }
+
+    words.forEach( (word) => {
+      let score = this.scoreWord(word);
+      if (score > winningWord.score) {
+        winningWord.word = word;
+        winningWord.score = score;
+      }
+    })
+    return winningWord;
   }
 };
 
