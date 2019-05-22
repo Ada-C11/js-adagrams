@@ -7,47 +7,19 @@ const randomIndex = function randomIndex(max) {
 const Adagrams = {
 
   drawLetters() {
-    // build a letter bank (hash?)
-    // create a variable that will hold drawn letters
-    // draw letter, subract count from letter bank, push into drawnLetters array
-    // once completed return all letters to the letter bank
 
-    const letterBank = [
-      "A", "A", "A", "A", "A", "A", "A", "A", "A",
-      "B", "B",
-      "C", "C",
-      "D", "D", "D", "D",
-      "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E",
-      "F", "F",
-      "G", "G", "G",
-      "H", "H",
-      "I", "I", "I", "I", "I", "I", "I", "I", "I",
-      "J",
-      "K",
-      "L", "L", "L", "L",
-      "M", "M",
-      "N", "N", "N", "N", "N", "N",
-      "O", "O", "O", "O", "O", "O", "O", "O",
-      "P", "P",
-      "Q",
-      "R", "R", "R", "R", "R", "R",
-      "S", "S", "S", "S",
-      "T", "T", "T", "T", "T", "T",
-      "U", "U", "U", "U",
-      "V", "V",
-      "W", "W",
-      "X",
-      "Y", "Y",
-      "Z",
-    ]
+    const letterPool = { 'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2, 'G': 3, 'H': 2, 'I': 9, 'J': 1, 'K': 1, 'L': 4, 'M': 2, 'N': 6, 'O': 8, 'P': 2, 'Q': 1, 'R': 6, 'S': 4, 'T': 6, 'U': 4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 'Z': 1};
+    const letterBank = []
 
-    const letterBank = { 'A': 9, 'B'}
-
-    for ( let key of  )
+    for (let key in letterPool) {
+      for (let i = 0; i < letterPool[key]; i += 1 ) {
+        letterBank.push(key);
+      }
+    }
 
     const drawnLetters = []
     for (let i = 0; i < 10; i += 1) {
-      let randomLetter = letterBank[randomIndex(letterBank.length)]
+      let randomLetter = letterBank[randomIndex(letterBank.length)];
       if(letterBank.includes(randomLetter)) {
         drawnLetters.push(randomLetter);
         letterBank.splice(letterBank.indexOf(randomLetter), 1);
@@ -114,8 +86,6 @@ const Adagrams = {
   }
 
 };
-
-console.log(Adagrams.highestScoreFrom(["AAAAAAAAAA", "ZBBAA"]))
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
