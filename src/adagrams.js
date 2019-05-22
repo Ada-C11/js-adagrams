@@ -18,10 +18,11 @@ const Adagrams = {
     }
 
     let hands = new Array();
-
+  
     for(let i = 0; i < 10; i += 1) {
-      const randIndex = Math.floor(Math.random() * (letters.length - i));
+      const randIndex = Math.floor(Math.random() * (letters.length));
       hands.push(letters[randIndex]);
+      letters.splice(randIndex, 1);
     }
 
     return hands;
@@ -97,7 +98,7 @@ const Adagrams = {
         continue;
       }
     }
-    
+
     return result;
   },
 }
