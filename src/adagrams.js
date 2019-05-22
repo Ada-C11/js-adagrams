@@ -18,25 +18,46 @@ const Adagrams = {
       while (letterCount > 0) {
         letterBank.push(letter);
         letterCount -= 1;
-      };
-    };
+      }
+    }
 
     //Draw random letters
-    let randomLetters = []
-    let bankLength = letterBank.length
+    let randomLetters = [];
+    let bankLength = letterBank.length;
+    let letterBankCopy = letterBank.slice();
+
     for ( let i = 0; i < 10; i += 1 ) {
-      let letterBankCopy = letterBank.slice();
       let randIndex = Math.floor(Math.random() * bankLength);
-
+      
       randomLetters.push(letterBankCopy[randIndex]);
-      letterBankCopy = letterBankCopy.splice(randIndex, 1);
-   };
-   return randomLetters
+      letterBankCopy.splice(randIndex, 1);
+    }
+   return randomLetters;
+  },
+
+  usesAvailableLetters(input,lettersInHand) {
+    let length = lettersInHand.length
+    
+    if (length < 10 || length == 10) {
+      let i = 0
+      while (i < input.length) {
+        
+        if (!lettersInHand.includes(input[i])) {
+          return false;
+        }
+        let letterInHandIndex = lettersInHand.indexOf(input[i]);
+        lettersInHand.splice(letterInHandIndex,1);
+        i += 1;
+      }
+      
+      return true;
+    }
+    else {
+        return false;
+    }
+  },
 }
 
-}
-
-// console.log(Adagrams.drawLetters())
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
