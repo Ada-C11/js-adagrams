@@ -80,7 +80,8 @@ const Adagrams = {
 
   usesAvailableLetters(input, lettersInHand) {
 
-    let countItems = function countItems(collection, letter) {
+    const countItems = (collection, letter) => {
+
       let count = 0;
 
       for(let i = 0; i < collection.length; i += 1) {
@@ -90,8 +91,8 @@ const Adagrams = {
       }
     
       return count;
-  }
 
+    }
 
     let result;
     for(let i = 0; i < input.length; i += 1) {
@@ -121,8 +122,8 @@ const Adagrams = {
 
    highestScoreFrom(words) {
      let tieBreaker = function tieBreaker(current, challenger) {
-       console.log(`********* ${current}`)
-      if (current.length == 10) {
+       let currentLength = current.length;
+      if (currentLength == 10) {
         return current;
       } else if (challenger.length == 10) {
         return challenger;
@@ -130,23 +131,24 @@ const Adagrams = {
      }
 
     let winningWord = {
-      word: words[0],
-      score: this.scoreWord(words[0])
+      "word": words[0],
+      "score": this.scoreWord(words[0])
+    };
+
+    for(let i = 1; i < words.length; i += 1) {
+      let score = this.scoreWord(words[i]);
+      if (score > winningWord.score) {
+        winningWord.word = words[i];
+        winningWord.score = score;
+      } else if (score == winningWord.score && words[i].length == 10  && winningWord.word.length != 10 ) {
+        winningWord.word = words[i];
+        winningWord.score = score;
+      } else if (score == winningWord.score && words[i].length < 10 && winningWord.word.length < 10 && words[i].length < winningWord.word.length) {
+        winningWord.word = words[i];
+        winningWord.score = score;
+      } 
     }
 
-    words.forEach( (word) => {
-      let score = this.scoreWord(word);
-      if (score > winningWord.score) {
-        winningWord.word = word;
-        winningWord.score = score;
-      } else if (score == winningWord.score && word.length == 10) {
-        winningWord.word = word;
-        winningWord.score = score;
-      } else if (score == winningWord.score && word.length < winningWord.word.length) {
-        winningWord.word = word;
-        winningWord.score = score;
-      }
-    })
     return winningWord;
   }
 };
