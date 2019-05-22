@@ -33,6 +33,10 @@ const Adagrams = {
     return true;
   },
   scoreWord(word){
+    if(word.length === 0) {
+      return 0;
+    }
+
     const scoreRubric = { 'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1,
       'N': 1, 'R': 1, 'S': 1, 'T':1, 
       'D': 2, 'G': 2, 
@@ -43,12 +47,21 @@ const Adagrams = {
       'Q': 10, 'Z': 10 
     }
     let total = 0;
-    const keys = word.split('')
+    const keys = word.toUpperCase().split('')
 
-    for (const key in keys) {
-      total += scoreRubric.key
+    keys.forEach(letter => {
+      total += scoreRubric[letter];
+    })
+    if(word.length > 6 && word.length < 11) {
+      total += 8
     }
-    return total;
+
+    if(total){
+      return total;
+    } else {
+      return 1;
+    }
+
   },
 
   highestScoreFrom(){
