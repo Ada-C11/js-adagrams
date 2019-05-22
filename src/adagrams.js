@@ -21,7 +21,7 @@ const Adagrams = {
   },
   usesAvailableLetters(input, lettersDrawn){
     let lettersDrawnCopy = [...lettersDrawn];
-    let hand = input.split('');
+    let hand = input.toUpperCase().split('');
 
     for (let ltr in hand) {
       if(lettersDrawnCopy.includes(hand[ltr])){
@@ -36,7 +36,6 @@ const Adagrams = {
     if(word.length === 0) {
       return 0;
     }
-
     const scoreRubric = { 'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1,
       'N': 1, 'R': 1, 'S': 1, 'T':1, 
       'D': 2, 'G': 2, 
@@ -64,10 +63,36 @@ const Adagrams = {
 
   },
 
-  highestScoreFrom(){
+  highestScoreFrom(words){
+    const allScores = {};
+    const tiedWords = [];
+    words.forEach( word => {
+      allScores[word] = this.scoreWord(word);
+    })
+    const highestScore = words.map(this.scoreWord).reduce((h, s) => h < s ? s : h, 0)
 
+    for (let i in allScores){
+      if(allScores[i] == highestScore){
+        tiedWords.push(i)
+      }
+    }
+    if(tiedWords.length == 1) {
+      return {"score": highestScore, "word": tiedWords[0]}
+    }
+    // Otherwise continue...
+    let shortestWord = tiedWords[0]
+
+    for(let i in tiedWords) {
+      if(i.length == 10) {
+        return {"score": highestScore, "word": i};
+      } else if(i.length < shortestWord){
+        shortestWord = i;
+      }
+    }
+    return {"score": highestScore, "word": shortestWord}
   }
-};
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
+// Adagrams.highestScoreFrom(['JJJJ', 'XXXX', 'X', 'XX'])
