@@ -1,17 +1,3 @@
-// const gen_letter_array = function gen_letter_array(letter_object) {
-//   const array = [];
-//   letter_object.forEach()
-// }
-
-// letter_freq = {
-//   A: 9, N: 6, B: 2, O: 8, C: 2, P: 2, D: 4, Q: 1, E: 12, R: 6, F: 2, S: 4,
-//   G: 3, T: 6, H: 2, U: 4, I: 9, V: 2, J: 1, W: 2, K: 1, X: 1, L: 4, Y: 2, M: 2, Z: 1,
-// }
-// const avail_letters = gen_letter_array(letter_freq);
-
-// Helper method to shuffle letterFrequency
-
-
 const Adagrams = {
   shuffle(letters) {
     for (let i = letters.length - 1; i > 0; i--) {
@@ -93,26 +79,20 @@ const Adagrams = {
     }
     wordArray.forEach(letter => total += letterScore[letter]);
     return total;
-  }
+  },
+  highestScoreFrom(words) {
+    let winner = { word: '', score: 0 };
+    words.forEach( (word) => {
+      if (this.scoreWord(word) > winner.score) {
+        winner = { word: word, score: this.scoreWord(word) }
+      } else if (this.scoreWord(word) === winner.score) {
+        if (((word.length < winner.word.length) || (word.length === 10)) && (winner.word.length != 10)) {
+          winner = { word: word, score: this.scoreWord(word)};
+        }
+      }
+    }) 
+    return winner;
+  },
 };
-
-// # Returns a single hash that represents the data of a winning word and its score.
-// def highest_score_from(words)
-//   winner = {
-//     word: "",
-//     score: 0,
-//   }
-
-//   words.each do |word|
-//     if score_word(word) > winner[:score]
-//       winner = { word: word, score: score_word(word) }
-//     elsif score_word(word) == winner[:score]
-//       if ((word.length < winner[:word].length) || (word.length == 10)) && (winner[:word].length != 10)
-//         winner = { word: word, score: score_word(word) }
-//       end
-//     end
-//   end
-//   return winner
-// end
 
 export default Adagrams;
