@@ -107,8 +107,41 @@ const Adagrams = {
       total += 8;
     }
     return total;
-  }
+  },
+  highestScoreFrom(words) {
+    let result = {};
+    let bestScore = 0;
+    let bestWord;
+    for(const word of words) {
+      if (Adagrams.scoreWord(word) > bestScore) {
+        bestScore = Adagrams.scoreWord(word);
+        bestWord = word;
+      } else if (Adagrams.scoreWord(word) === bestScore) {
+        if(bestWord.length === 10) {
+          bestWord;
+        } else if (word.length === 10) {
+          bestWord = word;
+        } else {
+          if(word.length < bestWord.length) {
+            bestWord = word;
+          } else {
+            bestWord;
+          }
+        }
+      }
+        
+      }
+      result.word = bestWord;
+      result.score = bestScore;
+      return result;
+    }
+
 }
+
+
+
+
+
 
 
 

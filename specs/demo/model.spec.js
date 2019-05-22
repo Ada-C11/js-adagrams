@@ -315,7 +315,7 @@ describe('Game Model', () => {
         }).length + 1);
       };
 
-      xit('it returns null', () => {
+      it('it returns null', () => {
         const model = getModel();
         const word = getWord(model);
 
