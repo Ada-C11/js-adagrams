@@ -33,14 +33,16 @@ const Adagrams = {
     3: ['B', 'C', 'M', 'P'],
     4: ['F', 'H', 'V', 'W', 'Y'],
     5: ['K'],
-    6: ['J', 'X'],
-    7: ['Q', 'Z']
+    8: ['J', 'X'],
+    10: ['Q', 'Z']
   },
+
   drawLetters() {
     return _.sampleSize(this.letters, 10);
   },
+
   usesAvailableLetters(input, lettersInHand) {
-    const playedLetters = input.split('');
+    const playedLetters = (input.toUpperCase()).split('');
     let valid = {};
     let result = true;
 
@@ -57,24 +59,48 @@ const Adagrams = {
     });
     return result;
   },
+
   scoreWord(word) {
-    //returns an integer representing the sum of points.
-    // if word is between 7 - 10 letters long receive bonus 8 points
-    const input = word.split('');
+    const input = (word.toUpperCase()).split('');
     const array = Object.entries(this.scores);
     let total = 0;
 
     input.forEach((letter) => {
       array.forEach((score) => {
         if (score[1].includes(letter)) {
-          total += score[0];
+          total += parseInt(score[0]);
         }
       });
     });
+
+    if (word.length >= 7) {
+      total += 8;
+    }
+
     return total;
+  },
+
+  highestScoreFrom(words) {
+    let highestScore = { word: '', score: 0};
+
+    words.forEach((word) => {
+      const score = this.scoreWord(word);
+      // console.log(highestScore);
+
+      if (score > highestScore.score) {
+        highestScore.word = word;
+        highestScore.score = score;
+      } else if (score === highestScore.score) { 
+        if ((word.length === 10 && highestScore.word.length != 10) || 
+        ((word.length < highestScore.word.length) && highestScore.word.length != 10)) {
+          highestScore.word = word;
+          highestScore.score = score;
+        } 
+      }
+    });
+    return highestScore;
   }
 };
 
-console.log(Adagrams.scoreWord('DOG');
 // Do not remove this line or your tests will break!
 export default Adagrams;
