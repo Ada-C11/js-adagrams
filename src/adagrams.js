@@ -67,7 +67,7 @@ const Adagrams = {
     const scores = words.map(this.scoreWord)
     const highestScore = scores.reduce((hs, score) => hs < score ? score : hs, 0);
     const tiedWords = [];
-    // prefers 10 letter word
+   
     for (let i in words){
       if(words[i].length == 10) {
         return {score: this.scoreWord(words[i]), word: words[i]};
@@ -75,12 +75,12 @@ const Adagrams = {
     }
     
     let allScores = {};
-    // create a hash for all word/value pairs
+   
     words.forEach(word => {
       allScores[word] = this.scoreWord(word);
     })
 
-    // send ties to tiedWords
+    
     for (let i in allScores) {
       if (allScores[i] == highestScore) {
         tiedWords.push(i);
