@@ -119,6 +119,8 @@ const Adagrams = {
       'word': '',
       'score': 0,
     }
+    highestScoreWord['word'] = words[0];
+    highestScoreWord['score'] = Adagrams.scoreWord(words[0]);
  
     words.forEach( function (word){
       
@@ -129,46 +131,30 @@ const Adagrams = {
 
         highestScoreWord['score'] = incomingWordScore;
         highestScoreWord['word'] = incomingWord;
-        // console.log(highestScoreWord);
-        // return highestScoreWord;
-        // Don't return until the
-        
       
       }  else if (incomingWordScore == highestScoreWord['score']){
-        if ( highestScoreWord['score'].length < 10 || incomingWord.length == 10){
-          highestScoreWord['score'] = incomingWordScore;
+
+        if ( incomingWord.length == 10 && highestScoreWord['word'].length < 10){
+          
           highestScoreWord['word'] = incomingWord;
-          // return highestScoreWord;
-        } else if (incomingWord.length < highestScoreWord['score'].length){
+          highestScoreWord['score'] = incomingWordScore;
+
+        } else if (incomingWord.length < highestScoreWord['word'].length && highestScoreWord['word'].length < 10 ){
         highestScoreWord['score'] = incomingWordScore;
         highestScoreWord['word'] = incomingWord;
-          return highestScoreWord;
-        }
+        } 
+
       }
-      console.log(highestScoreWord);
-      //  else {
-      //   highestScoreWord['score'] = incomingWordScore;
-      //   highestScoreWord['word'] = incomingWord;
-      //   return highestScoreWord;
-      // }
+
     });
-    
-
-
-
-
-  //   return // hash - word: string  score: integer
-
+    return highestScoreWord;
   }
   
 };
-// console.log(Adagrams.drawLetters());
-// console.log(Adagrams.usesAvailableLetters('mmuilpp',['l','m','p','i','u','p','m']))
-// console.log(Adagrams.scoreWord('HELLOHHOOOO'));
-console.log(Adagrams.highestScoreFrom(['QQQQQQQQE','QQQQQQKKA','']));
+
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
 
 
   
