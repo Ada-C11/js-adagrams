@@ -33,18 +33,19 @@ const letters = Object.keys(letterQuantities)
 // then loop over keys array; access letter Quantities key
 // and put the key (the letter) into letterTiles array 'value' number of times  
 
-const letterTiles = []
+let letterTiles = []
 
-const makeLetterTiles =  letters.forEach( function makeLetterTiles(letter) {
+letters.forEach( function makeLetterTiles(letter) {
   // this could probably be a .map, too
   let numberOfLetter = letterQuantities[letter];
   let tempString = letter.repeat(numberOfLetter);
-  letterTiles.push(tempString.split(''));
+  letterTiles = letterTiles.concat(tempString.split(''));
 })
-// console.log('letterTiles: ' + letterTiles);
+console.log('letter tiles: ', letterTiles);
+
 
 // the above code should make this...
-// const letterTiles = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'D', 'D', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'F', 'F', 'G', 'G', 'G', 'H', 'H', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'J', 'K', 'L', 'L', 'L', 'L', 'M', 'M', 'N', 'N', 'N', 'N', 'N', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'P', 'P', 'Q', 'R', 'R', 'R', 'R', 'R', 'R', 'S', 'S', 'S', 'S', 'T', 'T', 'T', 'T', 'T', 'T', 'U', 'U', 'U', 'U', 'V', 'V', 'W', 'W', 'X', 'Y', 'Y', 'Z']
+// letterTiles: ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'D', 'D', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'F', 'F', 'G', 'G', 'G', 'H', 'H', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'J', 'K', 'L', 'L', 'L', 'L', 'M', 'M', 'N', 'N', 'N', 'N', 'N', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'P', 'P', 'Q', 'R', 'R', 'R', 'R', 'R', 'R', 'S', 'S', 'S', 'S', 'T', 'T', 'T', 'T', 'T', 'T', 'U', 'U', 'U', 'U', 'V', 'V', 'W', 'W', 'X', 'Y', 'Y', 'Z']
 // ***********************************
 
 // ANOTHER APPROACH:
@@ -66,20 +67,20 @@ const letterScores = {
   }
 
 
-let lettersInHand = []
-
-const Adagrams = {
-  drawLetters() {
-    let i = 0;
-    while (i<10) {
-      let randomIndex = letterTiles[Math.floor(Math.random() * letterTiles.length)];
-      
-      if (letterTiles[randomIndex] != null){
-        lettersInHand.push(letterTiles[randomIndex]);
-        letterTiles[randomIndex] = null;
-        i += 1;
+  
+  const Adagrams = {
+    drawLetters() {
+      let lettersInHand = []
+      let i = 0;
+      while (i<10) {
+        let randomIndex = Math.floor(Math.random() * letterTiles.length);
+        
+        if (letterTiles[randomIndex] != null){
+          lettersInHand.push(letterTiles[randomIndex]);
+          letterTiles[randomIndex] = null;
+          i += 1;
+        }
       }
-    }
     console.log('letters in hand: ' + lettersInHand)
     return lettersInHand;
   },
@@ -92,6 +93,6 @@ const Adagrams = {
   }
 };
 
-drawLetters();
+Adagrams.drawLetters();
 // Do not remove this line or your tests will break!
 // export default Adagrams;
