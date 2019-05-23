@@ -136,8 +136,8 @@ const Adagrams = {
 
         if ( incomingWord.length == 10 && highestScoreWord['word'].length < 10){
           
-          highestScoreWord['word'] = incomingWord;
           highestScoreWord['score'] = incomingWordScore;
+          highestScoreWord['word'] = incomingWord;
 
         } else if (incomingWord.length < highestScoreWord['word'].length && highestScoreWord['word'].length < 10 ){
         highestScoreWord['score'] = incomingWordScore;
