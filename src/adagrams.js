@@ -81,6 +81,11 @@ const Adagrams = {
     let hand = [];
     for (let i = 10; i > 0; i -=1) {
       let randomLetter = letterDraw[Math.floor(Math.random()*letterDraw.length)];
+
+      while (this.countItems(hand, randomLetter) == letterPool[randomLetter]) {
+        randomLetter = letterDraw[Math.floor(Math.random()*letterDraw.length)];
+      }
+
       hand.push(randomLetter);
     }
 
