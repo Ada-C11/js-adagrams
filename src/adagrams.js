@@ -63,6 +63,9 @@ const Adagrams = {
   },
 
   scoreWord(word) {
+    if (word === "" || typeof word !== 'string') {
+      return 0;
+    } 
     const letterToValue = new Map([
       ["A", 1],
       ["E", 1],
@@ -91,6 +94,14 @@ const Adagrams = {
       ["Q", 10],
       ["Z", 10],
     ])
+    let points = word.split("").map(
+      //reduce takes the array and reduces it to one element 
+      //for each pair of values add them together (a + v)/ number1 +number2
+      letter => letterToValue.get(letter.toUpperCase())).reduce((a, v)=>a + v);
+    if (word.length >= 7) {
+      points += 8
+    }
+    return points
   }
 };
 
