@@ -45,26 +45,22 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    const scores = words.map((word) => this.scoreWord(word));
-    const maxScore = scores.reduce((a,b) => Math.max(a,b));
-    const ties = [];
-    let bestWord;
+    let bestWord = '';
+    let bestScore = 0;
     for (let i = 0; i < words.length; i += 1) {
-      if (this.scoreWord(words[i]) == maxScore) {
-        if (words[i].length == 10) {
-           bestWord = words[i]; 
-           break;
-        } else ties.push(words[i]);
+      let word = words[i];
+      let score = Adagrams.scoreWord(word);
+      if (score > bestScore) {
+        bestWord = word;
+        bestScore = score;
+      } else if (score == bestScore) {
+          if (bestWord.length != 10 && (word.length == 10 || word.length < bestWord.length)) {
+            bestWord = word;
+            bestScore = score;
+          }
       }
     }
-    if (!bestWord) {
-      if (ties.length == 1) bestWord = ties[0];
-      else {
-        const minLength = ties.reduce((a,b) => Math.min(a.length, b.length));
-        bestWord = ties.filter(word => word.length == minLength)[0];
-      }
-    }
-    const bestWordObj = { word: bestWord, score: maxScore };
+    const bestWordObj = { word: bestWord, score: bestScore };
     return bestWordObj;
   },
 };
@@ -72,3 +68,5 @@ const Adagrams = {
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
+
+
