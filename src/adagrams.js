@@ -75,9 +75,13 @@ const Adagrams = {
     word = word.toUpperCase();
     let letters = word.split('');
     let score = 0; 
+    if (word.length >= 7) {
+      score += 8;
+    }
 
     letters.forEach( function(letter) {
       score += scoreKey[letter];
+
     }
     )
     return score;
