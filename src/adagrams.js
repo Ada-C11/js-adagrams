@@ -65,7 +65,7 @@ const Adagrams = {
 
   highestScoreFrom(words){
     const scores = words.map(this.scoreWord)
-    const highestScore = scores.reduce((h, s) => h < s ? s : h, 0);
+    const highestScore = scores.reduce((hs, score) => hs < score ? score : hs, 0);
     const tiedWords = [];
     // prefers 10 letter word
     for (let i in words){
