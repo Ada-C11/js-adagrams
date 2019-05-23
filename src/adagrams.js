@@ -120,21 +120,37 @@ const Adagrams = {
       'score': 0,
     }
  
-
     words.forEach( function (word){
-
-      if (Adagrams.scoreWord(word) > highestScoreWord['score']){
-
-        highestScoreWord['score'] = Adagrams.scoreWord(word);
-        highestScoreWord['word'] = word;
-
-        console.log(highestScoreWord);
       
-      // console.log(Adagrams.scoreWord(word));
-      } else if (Adagrams.scoreWord(word) == highestScoreWord['score']){
-        if 
+      let incomingWord = word;
+      let incomingWordScore = Adagrams.scoreWord(incomingWord)
 
+      if (incomingWordScore > highestScoreWord['score']){
+
+        highestScoreWord['score'] = incomingWordScore;
+        highestScoreWord['word'] = incomingWord;
+        // console.log(highestScoreWord);
+        // return highestScoreWord;
+        // Don't return until the
+        
+      
+      }  else if (incomingWordScore == highestScoreWord['score']){
+        if ( highestScoreWord['score'].length < 10 || incomingWord.length == 10){
+          highestScoreWord['score'] = incomingWordScore;
+          highestScoreWord['word'] = incomingWord;
+          // return highestScoreWord;
+        } else if (incomingWord.length < highestScoreWord['score'].length){
+        highestScoreWord['score'] = incomingWordScore;
+        highestScoreWord['word'] = incomingWord;
+          return highestScoreWord;
+        }
       }
+      console.log(highestScoreWord);
+      //  else {
+      //   highestScoreWord['score'] = incomingWordScore;
+      //   highestScoreWord['word'] = incomingWord;
+      //   return highestScoreWord;
+      // }
     });
     
 
@@ -149,7 +165,7 @@ const Adagrams = {
 // console.log(Adagrams.drawLetters());
 // console.log(Adagrams.usesAvailableLetters('mmuilpp',['l','m','p','i','u','p','m']))
 // console.log(Adagrams.scoreWord('HELLOHHOOOO'));
-console.log(Adagrams.highestScoreFrom(['AAMOEXX','POLDRS']));
+console.log(Adagrams.highestScoreFrom(['QQQQQQQQE','QQQQQQKKA','']));
 
 // Do not remove this line or your tests will break!
 // export default Adagrams;
