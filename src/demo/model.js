@@ -1,4 +1,5 @@
-import Adagrams from 'demo/adagrams';
+import AdagramsClass from 'adagrams';
+const Adagrams = new AdagramsClass();
 
 class Model {
   constructor(config) {
