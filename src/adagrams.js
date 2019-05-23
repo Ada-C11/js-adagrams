@@ -88,8 +88,34 @@ const Adagrams = {
     if (word.length >= 7 && word.length <= 10) {
       points += 8;
     };
-    // console.log(`==============${points}`)
     return points;
+  },
+
+  highestScoreFrom(words) {
+    let highestScore = 0;
+    let winningWord = '';
+    let winner = {};
+
+    words.forEach(word => {
+      let score = this.scoreWord(word);
+
+      if (score > highestScore) {
+        highestScore = score;
+        winningWord = word;
+      } else if (score === highestScore) {
+        if (winningWord.length === 10) {
+          winningWord = winningWord;
+        } else if (word.length === 10) {
+          winningWord = word;
+        } else if (word.length < winningWord.length) {
+          winningWord = word;
+        }
+      }
+    });
+    
+    winner['word'] = winningWord;
+    winner['score'] = highestScore;
+    return winner;
   }
 };
 
