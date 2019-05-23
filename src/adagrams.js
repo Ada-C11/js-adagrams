@@ -64,35 +64,38 @@ const Adagrams = {
   },
 
   highestScoreFrom(words){
-    const allScores = {};
+    const scores = words.map(this.scoreWord)
+    const highestScore = scores.reduce((h, s) => h < s ? s : h, 0);
     const tiedWords = [];
-    words.forEach( word => {
+    // prefers 10 letter word
+    for (let i in words){
+      if(words[i].length == 10) {
+        return {score: this.scoreWord(words[i]), word: words[i]};
+      }
+    }
+    
+    let allScores = {};
+    // create a hash for all word/value pairs
+    words.forEach(word => {
       allScores[word] = this.scoreWord(word);
     })
-    const highestScore = words.map(this.scoreWord).reduce((h, s) => h < s ? s : h, 0)
 
-    for (let i in allScores){
-      if(allScores[i] == highestScore){
-        tiedWords.push(i)
+    // send ties to tiedWords
+    for (let i in allScores) {
+      if (allScores[i] == highestScore) {
+        tiedWords.push(i);
       }
     }
-    if(tiedWords.length == 1) {
-      return {"score": highestScore, "word": tiedWords[0]}
-    }
-    // Otherwise continue...
-    let shortestWord = tiedWords[0]
 
-    for(let i in tiedWords) {
-      if(i.length == 10) {
-        return {"score": highestScore, "word": i};
-      } else if(i.length < shortestWord){
-        shortestWord = i;
-      }
+    if (tiedWords.length == 1) {
+      return { "score": highestScore, "word": tiedWords[0] }
+    } else {
+      const shorterLen = tiedWords.reduce((i, n) => Math.min(i.length, n.length));
+      const winner = tiedWords.filter(word => word.length == shorterLen)[0];
+      return { word: winner, score: highestScore };
     }
-    return {"score": highestScore, "word": shortestWord}
-  }
+  },
 }
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
-// Adagrams.highestScoreFrom(['JJJJ', 'XXXX', 'X', 'XX'])
