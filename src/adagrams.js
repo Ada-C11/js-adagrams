@@ -53,6 +53,43 @@ const Adagrams = {
         return true;
       } 
     }
+  },
+
+  scoreWord(word) {
+    let points = 0;
+    word = word.toUpperCase();
+
+    for (let i = 0; i < word.length; i +=1) {
+      switch (word[i]) {
+        case 'A': case 'E': case 'I': case 'O': case 'U': case 'L': case 'N': case 'R': case 'S': case 'T':
+          points += 1;
+          break;
+        case 'D': case 'G':
+          points += 2;
+          break;
+        case 'B': case 'C': case 'M': case 'P':
+          points += 3;
+          break;
+        case 'F': case 'H': case 'V': case 'W': case 'Y':
+          points += 4
+          break;
+        case 'K':
+          points += 5;
+          break;
+        case 'J': case 'X':
+          points += 8;
+          break;
+        case 'Q': case 'Z':
+          points += 10;
+          break;
+      };
+    };
+
+    if (word.length >= 7 && word.length <= 10) {
+      points += 8;
+    };
+    // console.log(`==============${points}`)
+    return points;
   }
 };
 
