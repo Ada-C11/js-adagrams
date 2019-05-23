@@ -16,27 +16,21 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    if (input.length <= 10) {
-      for (let i = 0; i < input.length; i += 1) {
-        let letter = input.charAt(i);
-        if (!lettersInHand.includes(letter)) {
+    let splitInput = input.split('');
+    if (splitInput.length <= 10) {
+      for (let i = 0; i < splitInput.length; i += 1) {
+        if (!lettersInHand.includes(splitInput[i])) {
           return false;
         }
-        let letterIndex = lettersInHand.indexOf(letter);
+        let letterIndex = lettersInHand.indexOf(splitInput[i]);
         lettersInHand.splice(letterIndex, 1);
       }
-      return true;
+     return true;
     }
   }
 }
-//       word.forEach(function(eachLetterInWord) {
-//         if (!lettersInHand.include(eachLetterInWord)) {
-//             return false
-//         }
-//         lettersInHand.delete_at(lettersInHand.index(each_letter_in_word))      
-//       } return true
-//         return false    
-// };
+
+
 // console.log(Adagrams.drawLetters());
 // console.log(Adagrams.usesAvailableLetters());
 // Do not remove this line or your tests will break!
