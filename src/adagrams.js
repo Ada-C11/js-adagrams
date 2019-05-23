@@ -8,43 +8,26 @@ const Adagrams = {
       Object.entries(letterPool).forEach(function (entry){
         const letter = entry[0];
         const value = entry[1];
-        console.log(value);
+
         for (let i = 0; i < value; i += 1){
 
           letterArray.push(letter);
-          console.log(letterArray);
         }
-      }
-      )
-      // letterArray.forEach( function(entry){
-      //     const letter = entry[0]; 
-      //     const value = entry[1];
-      //     for (let i = 0; i < value; i += 1){
-
-      //       letterArray.concat(letter);
-      //       console.log(letterArray);
-      //     }
-      //   });
-      for (let i = 0; i < 10; i += 1){
-      // make something that will return 10 random letters 
-      let letterHand = letterArray[Math.floor(Math.random()*letterArray.length)];   
+      });
       
-      console.log(letterHand);
-    }
-    // return letterHand
-    // console.log(letterStuff);
-  
-   
-  
-    // alert(letterArray[Math.floor ( Math.random(10) * letterArray.length )])
-  
+      const letterHand = [];
 
-   
+      for (let i = 0; i < 10; i += 1){
+     
+      let randomTen = letterArray[Math.floor(Math.random()*letterArray.length)];   
+      
+      letterHand.push(randomTen);
+
+    } 
+    return letterHand;
+    // console.log(letterHand);
   },
-  
-
-  
 };
-console.log(Adagrams.drawLetters());
+// console.log(Adagrams.drawLetters());
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
