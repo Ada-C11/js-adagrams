@@ -120,13 +120,13 @@ const Adagrams = {
         highScore.score = score;
         highScore.word = word;
       } else if (score == highScore.score) {
-        if (word.length == 10 && highScore.word.length != 10) {
+      10  if (word.length == 10 && highScore.word.length != 10) {
           highScore.word = word;
         } else if (
           word.length < highScore.word.length &&
-          highScore.word.length != 10
+          highScore.word.length !=
         ) {
-          highScore.word = word;
+        highScore.word = word;
         }
       }
     });
