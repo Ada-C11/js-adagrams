@@ -1,5 +1,3 @@
-// use to run script node src/adagrams.js
-// npm to test
 class Adagrams {
   drawLetters() {
     const amountOfLetters = [
@@ -32,15 +30,11 @@ class Adagrams {
     ];
 
     let playersLetters = [];
-    //slice copies a given part of an array and returns that copied part as a new array. 
-    //It doesn’t change the original array.
     let randomLetters = amountOfLetters.slice();
 
     for (let i = 0; i < 10; i += 1) {
-      //  Math.floor returns the largest integer less than or equal to a given number.
           const randomLettersIndex = Math.floor(Math.random() * (randomLetters.length));
           playersLetters.push(randomLetters[randomLettersIndex]);
-          //splice changes an array, by adding or removing elements from it. 
           randomLetters.splice(randomLettersIndex, 1);
     }
  
@@ -95,8 +89,6 @@ class Adagrams {
       ["Z", 10],
     ])
     let points = word.split("").map(
-      //reduce takes the array and reduces it to one element 
-      //for each pair of values add them together (a + v)/ number1 +number2
       letter => letterToValue.get(letter.toUpperCase())).reduce((a, v)=>a + v);
     if (word.length >= 7) {
       points += 8;
@@ -114,8 +106,6 @@ class Adagrams {
       } else if (scoreList[i][1] == largestScore[1]) {
         if (largestScore[0].length === 10) {
           continue;
-          //continue breaks one iteration(in the loop),
-          //if a specified condition occurs, and continues with the next iteration in the loop.
         } else if (scoreList[i][0].length === 10) {
           largestScore = scoreList[i];
         } else if (scoreList[i][0].length < largestScore[0].length) {
@@ -123,9 +113,6 @@ class Adagrams {
         }
       }
     }
-    //const largestScore = scoreList.reduce((a, v) => a[1] > v[1] ? a : v)   
-    // a = ['hotdog'(word), 100(value)] 
-    // v = ['jhghg', 1098]
     return {
       word: largestScore[0],
       score: largestScore[1]
@@ -133,5 +120,4 @@ class Adagrams {
   }
 };
 
-// Do not remove this line or your tests will break!
 export default Adagrams;
