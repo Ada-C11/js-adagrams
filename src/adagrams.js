@@ -57,14 +57,6 @@ const letterPoints = {
   "Z": 10,
 }
 
-// const fillPool = (letterPool) => {
-//   Object.keys(letterDistribution).forEach( function(letter) {
-//     for (let i = 0; i < letterDistribution[letter]; i += 1) {
-//       letterPool.push(letter);
-//     }
-//   })
-// }
-
 const Adagrams = {
   fillPool(letterPool) {
     Object.keys(letterDistribution).forEach( function(letter)  {
@@ -83,6 +75,7 @@ const Adagrams = {
       hand.push(pool[drawnIndex]);
       pool.splice(drawnIndex, 1);
     }
+    this.fillPool(pool); // refill pool to match project requirements
     return hand;
   },
 
@@ -137,5 +130,4 @@ const Adagrams = {
   }
 };
 
-// Do not remove this line or your tests will break!
 export default Adagrams;
