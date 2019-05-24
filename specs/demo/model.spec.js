@@ -1,7 +1,7 @@
 import Model from 'demo/model';
 import Adagrams from 'demo/adagrams';
 
-describe('Game Model', () => {
+xdescribe('Game Model', () => {
   const config = {
     players: [
       'Player A',
@@ -54,7 +54,7 @@ describe('Game Model', () => {
     });
   });
 
-  describe('.currentPlayerName()', () => {
+  xdescribe('.currentPlayerName()', () => {
     it('is defined', () => {
       const model = new Model(config);
 
@@ -76,7 +76,7 @@ describe('Game Model', () => {
     });
   });
 
-  describe('.nextRound', () => {
+  xdescribe('.nextRound', () => {
     it('is defined', () => {
       const model = new Model(config);
 
@@ -125,7 +125,7 @@ describe('Game Model', () => {
       });
     });
 
-    describe('returns game state', () => {
+    xdescribe('returns game state', () => {
       it('gameOver', () => {
         const model = new Model({ ...config, rounds: 1 });
 
@@ -173,7 +173,7 @@ describe('Game Model', () => {
     });
   });
 
-  describe('.nextTurn', () => {
+  xdescribe('.nextTurn', () => {
     const getModel = () => {
       const model = new Model(config);
       model.nextRound();
@@ -198,7 +198,7 @@ describe('Game Model', () => {
       expect(model.currentPlayer).toBe(origPlayer + 2);
     });
 
-    describe('returns round state', () => {
+    xdescribe('returns round state', () => {
       it('roundOver', () => {
         const model = getModel();
 
@@ -253,7 +253,7 @@ describe('Game Model', () => {
     });
   });
 
-  describe('.playWord', () => {
+  xdescribe('.playWord', () => {
     const getModel = () => {
       const model = new Model(config);
       model.nextRound();

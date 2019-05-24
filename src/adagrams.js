@@ -1,5 +1,3 @@
-// import { join } from "path";
-// import { Z_ASCII } from "zlib";
 const Adagrams = {
   drawLetters() {
     const pool = {
@@ -55,7 +53,7 @@ const Adagrams = {
       if (!lettersInHand.includes(letter)) {
         return false;
       }
-      let letterIndex = lettersInHand.indexOf(letter)
+      let letterIndex = lettersInHand.indexOf(letter);
       lettersInHand.splice(letterIndex, 1);
     }
       return true;
@@ -87,36 +85,26 @@ const Adagrams = {
     return score;
   },
 
-  higestScoreFrom(words) {
-    let finalWinner = {
+  highestScoreFrom(words) {
+    const finalWinner = {
       word: '',
       score: 0
     };
 
-  //   if score > final_winner[:score]
-  //   final_winner[:score] = score
-  //   final_winner[:word] = word
-  // # If score equals final winner score (tie) 
-  // elsif score == final_winner[:score] 
-  //   # If current word  = 10 letters and final_winner doesn't, current word is the new final_winner
-  //   if word.length == 10 && final_winner[:word].length != 10
-  //     final_winner[:word] = word
-  //   # Else if the current word.length is smaller than the final_winner and the final_winner < 10 characters, the current word is the new final_winner
-  //   elsif (word.length < final_winner[:word].length)  && (final_winner[:word].length != 10)
-  //     final_winner[:word] = word
-  //   end
-  // end
-
     for (let word of words) {
-      if (this.scoreWord(word) > finalWinner[score]) {
-        finalWinner[score] = this.ScoreWord(word);
-        finalWinner[word] = this.ScoreWord(word);
-      } else if (this.scoreWord(word) === finalWinner[score])
-
+      if (this.scoreWord(word) > finalWinner.score) {
+        finalWinner.score = this.scoreWord(word);
+        finalWinner.word = word;
+      } else if (this.scoreWord(word) === finalWinner.score) {
+        if (word.length === 10 && finalWinner.word.length  != 10) {
+          finalWinner.word = word;
+        } else if (word.length < finalWinner.word.length && (finalWinner.word.length != 10)) {
+          finalWinner.word = word;
+        }
+      }
     }
     return finalWinner
   },
-
 
 }
   // console.log(Adagrams.drawLetters());
