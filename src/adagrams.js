@@ -31,29 +31,59 @@ const Adagrams = {
         hand.splice( hand.indexOf(letter), 1);
         console.log(`input: ${inputArray}, hand: ${hand}`);
       } else {
-        // console.log("this failed")
         return false;
       }
     };
-    // console.log("wahoozles!")
     return true;
   },
 
   scoreWord(word) { 
-    // hash object with point value
-    // initialize score = 0
-    // iterate through word
-    // increment score with each value
-    // check length
+    const scoreChart = {
+      A: 1,
+      E: 1,
+      I: 1,
+      O: 1,
+      U: 1,
+      L: 1,
+      N: 1,
+      R: 1,
+      S: 1,
+      T: 1,
+      D: 2,
+      G: 2,
+      B: 3,
+      C: 3,
+      M: 3,
+      P: 3,
+      F: 4,
+      H: 4,
+      V: 4,
+      W: 4,
+      Y: 4,
+      K: 5,
+      J: 8,
+      X: 8,
+      Q: 10,
+      Z: 10
+    };
 
-    // return int (score)
+    points = 0;
+    const wordArray = word.toUpperCase().split('');
+
+    wordArray.forEach((letter) => {
+      points += scoreChart[letter];
+    });
+    
+    if (word.length > 6 && word.length < 11) {
+      points += 8;
+    }
+
+    return points;
   },
-
-
 };
 
-// const letters = ['d', 'o', 'x', 'f', 'q', 'e', 'v', 'i', 'a', 'd'];
-// console.log(Adagrams.usesAvailableLetters('dog', letters));
+// const letters = ['d', 'o', 'g', 'f', 'q', 'e', 'v', 'i', 'a', 'd'];
+// console.log(Adagrams.scoreWord('fqe'));
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
