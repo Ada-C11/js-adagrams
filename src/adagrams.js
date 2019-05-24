@@ -56,7 +56,7 @@ const Adagrams = {
             (winningHash.word = word);
           }
         });
-        return winningHash;
+        return winningHash; // doesnt work?!!?!
       }
 }
 // console.log(Adagrams.drawLetters());
