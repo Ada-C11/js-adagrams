@@ -38,9 +38,27 @@ const Adagrams = {
     }
   )
   return points;
-  }
+  },
+  highestScoreFrom(words) {
+    let winningHash = {
+      word: "",
+      score: 0,
+    };
+      words.forEach((word) => {
+      if (this.scoreWord.word > winningHash.score) {
+        winningHash.word = word;
+        winningHash.score = this.scoreWord(word)
+      } else if (this.scoreWord.word) {
+          if (word.length === 10 && winningHash.word.length != 10) {
+          (winningHash.word = word)
+      } else if (word.length < winningHash.word.length &&
+            winningHash.word.length != 10)
+            (winningHash.word = word);
+          }
+        });
+        return winningHash;
+      }
 }
-
 // console.log(Adagrams.drawLetters());
 // Do not remove this line or your tests will break!
 export default Adagrams;
