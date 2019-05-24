@@ -30,19 +30,33 @@ const Adagrams = {
     "Y", "Y", // Y: 2
     "Z" // Z: 1
   ];
-  let draw = []
+
+  let lettersInHand = []
   for (let i = 0; i < 10; i++) { //for (int i = 0; i < array.length; i++)
     const letterPool = (letters)//Invoking this function should not change the pool of letters (makes copy)
     let randomLetters = letterPool.splice(Math.floor(letterPool.length * Math.random()), 1)[0];// splice remove one at index [0]
-    // get_random = function (list) {
-    //return list[Math.floor((Math.random()*list.length))];} 
-   //get_random([2,3,5])
-   draw.push(randomLetters);//
+    lettersInHand.push(randomLetters);//
   }
-  return draw;
+  return lettersInHand;
  },
+
+ usesAvailableLetters(input, lettersInHand) {
+ let inputWord = input.split(""); // split input from user Array ["T", "h", "e"]
+
+ for (let letter of inputWord) { // for every letter in input 
+  let index = lettersInHand.indexOf(letter);//  locate values of letter in an array.
+  if (index != -1) { //-1 if letter is not present.
+    lettersInHand.splice(index, 1);//removes the letter if present
+  } else {
+    return false;
+  }
+}
+return true;
+}
+
 };
 
-console.log(Adagrams.drawLetters());
+// how to know if it uses available letters
+//console.log(Adagrams.drawLetters());
 // Do not remove this line or your tests will break!
 export default Adagrams;
