@@ -40,6 +40,7 @@ letters.forEach( function makeLetterTiles(letter) {
   let numberOfLetter = letterQuantities[letter];
   let tempString = letter.repeat(numberOfLetter);
   letterTiles = letterTiles.concat(tempString.split(''));
+  // forEach always returns undefined
 })
 console.log('letter tiles: ', letterTiles);
 
@@ -89,10 +90,27 @@ const letterScores = {
   usesAvailableLetters(input, lettersInHand) {
     
     // Return true if each letter in input is the same and in the same quantity of lettersInHand
-    
+    let lettersInput = input.split('')
+    // make input into array of letters
+    if (lettersInput.length > 10) {
+      
+    input.forEach( === lettersInHand) {
+        // ^^^^^ STOPPED HERE, NEED TO CHANGE LOGIC TO CHECK EACH LETTER
+        // maybe use .charAt(index)
+        console.log(`true input: ${input}`)
+        console.log(`true letters in hand: ${lettersInHand}`)
+        return true;
+      } else {
+        console.log(`false input: ${input}`)
+        console.log(`false letters in hand: ${lettersInHand}`)
+        return false;
+      }    
+    } else {
+      return false;
+    }
   }
 };
 
-Adagrams.drawLetters();
+// Adagrams.drawLetters();
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
