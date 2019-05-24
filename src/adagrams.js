@@ -1,6 +1,5 @@
-const Adagrams = {
-  drawLetters() {
-    // Implement this method for wave 1
+class Adagrams {
+  static drawLetters() {
 
     let letters = [
       'A','A','A','A','A','A','A','A','A',
@@ -56,9 +55,9 @@ const Adagrams = {
 
     return hand;
 
-  },
+  }
 
-  usesAvailableLetters(input,lettersInHand){
+  static usesAvailableLetters(input,lettersInHand){
 
     let lettersInput = input.split('');
     if (lettersInput.length <= 10){
@@ -77,9 +76,9 @@ const Adagrams = {
       return false;
     }
 
-  },
+  }
 
-  scoreWord(word){
+  static scoreWord(word){
 
     let wordCaps = word.toUpperCase();
 
@@ -111,9 +110,9 @@ const Adagrams = {
 
     return totalScore;
 
-  },
+  }
 
-  highestScoreFrom(words){
+  static highestScoreFrom(words){
 
     let highestScoreWord = {
       'word': '',
@@ -150,7 +149,7 @@ const Adagrams = {
     return highestScoreWord;
   }
   
-};
+}
 
 
 // Do not remove this line or your tests will break!
