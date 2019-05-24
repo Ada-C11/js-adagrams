@@ -1,6 +1,5 @@
 const Adagrams = {
   drawLetters() {
-    // Implement this method for wave 1
     const letterFrequency = { A: 9, B: 2, C: 2, D: 4, E: 12, F: 2, G: 3, H: 2, I: 9, J: 1, K: 1, L: 4, M: 2, N: 6, O: 8, P: 2, Q: 1, R: 6, S: 4, T: 6, U: 4, V: 2, W: 2, X: 1, Y: 2, Z: 1 };
 
     let letterPool = []
@@ -10,10 +9,6 @@ const Adagrams = {
       }
     });
 
-    // let drawnLetters = []
-    // for (let i = 0; i < 10; i += 1) {
-    //   drawnLetters[i] = letterPool[Math.floor(Math.random()*letterPool.length)];
-    // }
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i -= 1) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -28,14 +23,20 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    let size = 0;
-    let inputArray = input.toUpperCase().split('');
+    const inputArray = input.toUpperCase().split('');
+    const hand = lettersInHand.map(letter => letter.toUpperCase());
 
-    // lettersInHand = 
-
-    // lettersInHand into a hash
-    // iterate through input to lookup char in hash
-    // return true if all have been looked up
+    for (const letter of inputArray) {
+      if (hand.includes(letter)) {
+        hand.splice( hand.indexOf(letter), 1);
+        console.log(`input: ${inputArray}, hand: ${hand}`);
+      } else {
+        // console.log("this failed")
+        return false;
+      }
+    };
+    // console.log("wahoozles!")
+    return true;
   },
 
   scoreWord(word) { 
@@ -51,8 +52,8 @@ const Adagrams = {
 
 };
 
-// console.log(Adagrams.drawLetters());
-// console.log(Adagrams.usesAvailableLetters('dog', lettersInHand));
+// const letters = ['d', 'o', 'x', 'f', 'q', 'e', 'v', 'i', 'a', 'd'];
+// console.log(Adagrams.usesAvailableLetters('dog', letters));
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
