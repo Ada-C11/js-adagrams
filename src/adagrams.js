@@ -68,6 +68,9 @@ if (word.length > 6){
 } 
 },
 
+highestScoreFrom(){
+
+},
 
 }
 // console.log(Adagrams.drawLetters());
