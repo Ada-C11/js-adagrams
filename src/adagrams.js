@@ -61,7 +61,11 @@ word.forEach(function(letter){
   wordScore += pointValue[letter];
 });
 
- 
+if (word.length > 6){
+  return wordScore += 8;
+} else {
+  return wordScore;
+} 
 },
 
 
