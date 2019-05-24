@@ -1,3 +1,5 @@
+import { arrayExpression } from "@babel/types";
+
 const Adagrams = {
  
   drawLetters() {
@@ -27,6 +29,24 @@ const Adagrams = {
     return letterHand;
     // console.log(letterHand);
   },
+  
+usesAvailableLetters(input, lettersInHand) {
+  
+   let letters = lettersInHand;
+   const match = true;
+   const noMatch = false;
+
+  for (let i = 0; i < input.length; i += 1 ){
+    if (letters.includes(input[i])) {
+      letters.splice(input[i], 1);
+    }else {
+        return noMatch;
+      }
+    }
+    return match;
+  }
+  
+  
 };
 // console.log(Adagrams.drawLetters());
 // Do not remove this line or your tests will break!
