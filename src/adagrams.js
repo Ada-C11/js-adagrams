@@ -9,12 +9,21 @@ const Adagrams = {
       'W': 2, 'X': 1, 'Y': 2, 'Z': 1
     };
 
+  // for WAVE 3: RETURN SCORE
+    // set up hash of letters w/ score value - like letterFrequencies 
+    const letterValues = {
+      'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 
+      'S': 1, 'T': 1, 'D': 2, 'G': 2, 'B': 3, 'C': 3, 'M': 3, 'P': 3, 
+      'F': 4, 'H': 4, 'V': 4, 'W': 4,'Y': 4, 'K': 5, 'J': 8, 'X': 8, 
+      'Q': 10, 'Z': 10, 
+    };
+    // WAVE 1 -->
     // use entries 
     // creating the empty lettersPool array 
     const lettersPool = [];
     // loop through frequencies to push letters to lettersPool 
     // entries will be an array of arrays w/ letter + count in each array 
-    const entries = Object.entries(letterFrequencies)
+    const entries = Object.entries(letterFrequencies);
     entries.forEach(entry => {
       letter = entry[0];
       count = entry[1];
@@ -23,51 +32,56 @@ const Adagrams = {
         lettersPool.push(letter)
       }
     });
-
-    
-    // fill in the letter pool based on the letter frequencies,
-    // then use that as the place to grab letters from to populate the hand
-
-
-      // empty array for hand of 10 random letters from lettersPool 
-      let handLetters = [];
-      // for loop to draw hand of 10 random letters - ex. in animalsounds.js
-               // initialization - condition - increment 
-      for (let i = 0; i < 10; i += 1) {
-        // define letter to pull 10 random letters
-        // pulling letters will not change lettersPool for future draws - ex. in tips.js
-              //use Math.floor to round down correctly and not return NaN
-        let letter = lettersPool[Math.floor(Math.random() * (lettersPool.length))];
-        // push 10 selected letters into array 
-        handLetters.push(letter);
-      }
-      // return array to player Q-- explicit return 
+    // empty array for hand of 10 random letters from lettersPool 
+    let handLetters = [];
+    // for loop to draw hand of 10 random letters - ex. in animalsounds.js
+              // initialization - condition - increment 
+    for (let i = 0; i < 10; i += 1) {
+      // define letter to pull 10 random letters
+      // pulling letters will not change lettersPool for future draws - ex. in tips.js
+            //use Math.floor to round correctly and not return NaN
+      let letter = lettersPool[Math.floor(Math.random() * (lettersPool.length))];
+      // push 10 selected letters into array 
+      handLetters.push(letter);
+    }
+    // return array to player - explicit return 
     return handLetters;
+  },
+// check function - 
+
+// WAVE 2: check if the word only uses some/all letters from handLetters array 
+// method (usesAvailableLetters w/ 2 parameters (input + lettersInHand))
+    // input is a string for input word from player
+    // lettersInHand is an array of 10 strings - each string is a letter 
+  usesAvailableLetters(input, lettersInHand) {
+    // copying lettersInHand array so that it can be changed w/o changing original array 
+    let letters = lettersInHand;
+    // initialization - condition - increment 
+    for (let i = 0; i < input.length; i += 1) {
+      // check for input and use indexOf method (tells index in the string where letter is- if letter not found- returns -1 so will be false) 
+      // splice method (add/subtract - permanently changes array - to prevent false positive)
+      // return true if every letter in the input word is available in correct quantity from lettersInHand 
+      let letter = letters.indexOf(input[i]);
+      if (letter === -1) {
+        return false;
+      } else {
+        letters.splice(letter, 1);
+      }
+      return true;
+   } 
+  },
+  // check if working TODO - make sure works even w/o cap. letters + function to get user input 
+  runProg() {
+    const myLet = this.drawLetters();
+    console.log(myLet);
+    return this.usesAvailableLetters('A', myLet);
   }
-}
+} 
 
-console.log(Adagrams.drawLetters())
-
-  // WAVE 2: check if the word is an anagram from some/all handLetters
-
-  // boolean function to confirm if valid play
-  // input = string for input word ---  lettersInHand = handLetters player has w/ each string = 1 letter
-
-//   const usesAvailableLetters = function usesAvailableLetters(input, lettersInHand) {
-//     // returns true or false, like baby animal example?
-//     if (input === lettersInHand) {
-//       return true;
-//      } else {
-//       return false;
-//      }
-//     };
-//   }
-
-// },
+  console.log(Adagrams.runProg());
 
   // WAVE 3: returns the score of a given word 
     // parameter of word - is a string of characters
- 
     // returns an integer for point total - add the points for each letter
     // add 8 pts if word is 7, 8, 9, or 10 length 
 
