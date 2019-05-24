@@ -1,6 +1,6 @@
 // use to run script node src/adagrams.js
 // npm to test
-const Adagrams = {
+class Adagrams {
   drawLetters() {
     const amountOfLetters = [
       "A", "A", "A", "A", "A", "A", "A", "A", "A", 
@@ -29,7 +29,7 @@ const Adagrams = {
       "X",
       "Y", "Y",
       "Z"
-    ]
+    ];
 
     let playersLetters = [];
     //slice copies a given part of an array and returns that copied part as a new array. 
@@ -45,7 +45,7 @@ const Adagrams = {
     }
  
     return playersLetters;
-  },
+  }
 
   usesAvailableLetters(input, lettersInHand) {
     for (var i = 0; i < input.length; i += 1) {
@@ -60,7 +60,7 @@ const Adagrams = {
       }
     }
     return true;
-  },
+  }
 
   scoreWord(word) {
     if (word === "" || typeof word !== 'string') {
@@ -99,14 +99,39 @@ const Adagrams = {
       //for each pair of values add them together (a + v)/ number1 +number2
       letter => letterToValue.get(letter.toUpperCase())).reduce((a, v)=>a + v);
     if (word.length >= 7) {
-      points += 8
+      points += 8;
     }
-    return points
+    return points;
+  }
+
+  highestScoreFrom(words) {
+    const scoreList = words.map(word => [word, this.scoreWord(word)]);
+    let largestScore = [null, 0];
+
+    for (let i = 0; i < scoreList.length; i += 1) {
+      if (scoreList[i][1] > largestScore[1]) {
+        largestScore = scoreList[i];
+      } else if (scoreList[i][1] == largestScore[1]) {
+        if (largestScore[0].length === 10) {
+          continue;
+          //continue breaks one iteration(in the loop),
+          //if a specified condition occurs, and continues with the next iteration in the loop.
+        } else if (scoreList[i][0].length === 10) {
+          largestScore = scoreList[i];
+        } else if (scoreList[i][0].length < largestScore[0].length) {
+          largestScore = scoreList[i];
+        }
+      }
+    }
+    //const largestScore = scoreList.reduce((a, v) => a[1] > v[1] ? a : v)   
+    // a = ['hotdog'(word), 100(value)] 
+    // v = ['jhghg', 1098]
+    return {
+      word: largestScore[0],
+      score: largestScore[1]
+    }
   }
 };
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
-
-console.log(Adagrams.drawLetters());
-
