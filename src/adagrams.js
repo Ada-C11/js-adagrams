@@ -61,7 +61,7 @@ const Adagrams = {
         letters.splice(letter, 1);
       }
       return true;
-   } 
+    } 
   },
 // WAVE 3: RETURN SCORE
 // create a function called scoreWord w/ word parameter 
@@ -72,7 +72,7 @@ const Adagrams = {
       'S': 1, 'T': 1, 'D': 2, 'G': 2, 'B': 3, 'C': 3, 'M': 3, 'P': 3, 
       'F': 4, 'H': 4, 'V': 4, 'W': 4,'Y': 4, 'K': 5, 'J': 8, 'X': 8, 
       'Q': 10, 'Z': 10, 
-    };
+    }; 
 // each letter has point value and gets summed up for score
 // add 8 pts if word is 7, 8, 9, or 10 length 
     let score = 0; 
@@ -83,33 +83,51 @@ const Adagrams = {
 // use forEach like in tips.js - more concise than just for 
 // use arrow function to minimize syntax in forEach - make 1 line instead of 3
     word.split('').forEach(ltr => {
-// [ltr] for key in hash 
+// [ltr] for key in hash (score value)
       score += letterValues[ltr];
     });
     return score; 
   },
-  // WAVE 4: highest scoring word
-// new function - highestScoreFrom w/ 1 parameter- words- an array of strings
-highestScoreFrom(words);
-// returns a single hash that represents 
+}
+
+// WAVE 4: highest scoring word
+// new function - highestScoreFrom w/ 1 parameter- words- an array of strings (have to get value - use scoreWord)
+// loop through array to find highest score
+//   highestScoreFrom(words) {
+//     let highScore = 0;
+//     let word = "";
+// // initialization - condition - increment 
+//     for (let i = 0; i < words.length; i += 1) {
+// // for current word in the loop - get score and assign to score variable 
+// // scoreWord for function to get score - need this. b/c calling another function w/in the same object 
+//       const score = this.scoreWord(words[i]);
+// define which is the highest score 
+  //     if (score > highScore) {
+  //       highScore = score;
+  //       word = words[i];
+  //     } else if (score == highScore) {
+  //       // console.log(word, words[i]);
+  //   return {word: word, score: highScore};
+  // },
+
 // check if working TODO - make sure works even w/o cap. letters + function to get user input 
-  runProg() {
-    const myLet = this.drawLetters();
-    console.log(myLet);
-    return this.usesAvailableLetters('A', myLet);
-  }
-}  
+//   runProg() {
+//     const myLet = this.drawLetters();
+//     console.log(myLet);
+//     const isAnagram = this.usesAvailableLetters('A', myLet);
+//     console.log(isAnagram);
+//     if (isAnagram) {
+//       return scoreWord('A');
+//     };
+//   }
+// }  
 
-  console.log(Adagrams.runProg());
+// //  console.log(Adagrams.runProg());
+// // note- use all caps until fix 
+// tester = ['ALF', 'CAT'];
 
-
-
-
-
-
-
-
+// console.log(Adagrams.highestScoreFrom(tester));
 
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
 
