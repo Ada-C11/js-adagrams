@@ -44,8 +44,41 @@ usesAvailableLetters(input, lettersInHand) {
       }
     }
     return match;
-  }
-  
+  },
+
+scoreWord(word) {
+  let pointValue = [
+    {
+      letters: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+      values: 1,
+    }, 
+    {
+      letters: ["D", "G"],
+      values: 2,
+    },
+    {
+      letters: ["B", "C", "M", "P"],
+      values: 3,
+    },
+    {
+      letters: ["F", "H", "V", "W", "Y"],
+      values: 4,
+    },
+    {
+      letters: ["K"],
+      values: 5,
+    },
+    {
+      letters: ["J", "X"],
+      values: 8,
+    },
+    {
+      letters: ["Q", "Z"],
+      values: 10,
+    },
+  ]
+
+}
   
 };
 // console.log(Adagrams.drawLetters());
