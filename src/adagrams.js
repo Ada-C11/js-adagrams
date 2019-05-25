@@ -87,51 +87,58 @@ const Adagrams = {
   },
 
 
-usesAvailableLetters(inputWord, lettersInHand) {
-  
-  // Return true if each letter in input is the same and in the same quantity of lettersInHand
-  const inputLetters = inputWord.split('');
-  const handCopy = lettersInHand.slice(0);
-  // make a copy of lettersInHand array that can be modified
-  console.log(`inputLetters: ${inputLetters}`);
-  console.log(`handCopy: ${handCopy}`);
-  console.log(`inputWord: ${inputWord}`);
-  
-  if (inputLetters.length > lettersInHand.length) {
-    return false;
-  } else {    
-    // let contains = letter => {
-      
-      // } 
-      
-    let isValid = true;
-    inputLetters.forEach((letter) => {
-      console.log('***********************************');
-      if (handCopy.includes(letter)){
-        // The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
-        let letterIndex = handCopy.indexOf(letter);
-        delete handCopy[letterIndex]; 
-        // The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
-        console.log(`true handCopy: ${handCopy}`);
-      } else {
-        // console.log(`false input: ${inputWord}`)
-        console.log(`false handCopy: ${handCopy}`);
-        isValid = false;
-      } 
-    });
-    if (isValid) {
-      console.log('returning true');
-      return true;
-    }else{
+  usesAvailableLetters(inputWord, lettersInHand) {
+    
+    // Return true if each letter in input is the same and in the same quantity of lettersInHand
+    const inputLetters = inputWord.split('');
+    const handCopy = lettersInHand.slice(0);
+    // make a copy of lettersInHand array that can be modified
+    // console.log(`inputLetters: ${inputLetters}`);
+    // console.log(`handCopy: ${handCopy}`);
+    // console.log(`inputWord: ${inputWord}`);
+    
+    if (inputLetters.length > lettersInHand.length) {
       return false;
-    }
-  }   
-},
+    } else {    
+      // let contains = letter => {
+        
+        // } 
+        
+      let isValid = true;
+      inputLetters.forEach((letter) => {
+        // console.log('***********************************');
+        if (handCopy.includes(letter)){
+          // The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
+          let letterIndex = handCopy.indexOf(letter);
+          delete handCopy[letterIndex]; 
+          // The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
+          // console.log(`true handCopy: ${handCopy}`);
+        } else {
+          // console.log(`false input: ${inputWord}`)
+          // console.log(`false handCopy: ${handCopy}`);
+          isValid = false;
+        } 
+      });
+      if (isValid) {
+        // console.log('returning true');
+        return true;
+      } else {
+        return false;
+      }
+    }   
+  },
   
-  // const scoreword = (inputWord) => {
-  //   // maybe use .charAt(index)
+  scoreWord(inputWord) {
+    // maybe use .charAt(index)
+    const word = inputWord.toUpperCase();
+    let wordPoints = 0;
 
-  // },
+    if (inputWord.length > 6) wordPoints += 8;
+
+    return wordPoints;
+
+  },
+
 };
 
 // Adagrams.drawLetters();
