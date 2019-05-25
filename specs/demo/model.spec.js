@@ -1,7 +1,7 @@
 import Model from 'demo/model';
 import Adagrams from 'demo/adagrams';
 
-xdescribe('Game Model', () => {
+describe('Game Model', () => {
   const config = {
     players: [
       'Player A',
@@ -11,7 +11,7 @@ xdescribe('Game Model', () => {
     time: 60, // Seconds
   };
 
-  xdescribe('constructor', () => {
+  describe('constructor', () => {
     it('creates a new Model instance', () => {
       const model = new Model(config);
 
@@ -54,7 +54,7 @@ xdescribe('Game Model', () => {
     });
   });
 
-  xdescribe('.currentPlayerName()', () => {
+  describe('.currentPlayerName()', () => {
     it('is defined', () => {
       const model = new Model(config);
 
@@ -76,7 +76,7 @@ xdescribe('Game Model', () => {
     });
   });
 
-  xdescribe('.nextRound', () => {
+  describe('.nextRound', () => {
     it('is defined', () => {
       const model = new Model(config);
 
@@ -125,7 +125,7 @@ xdescribe('Game Model', () => {
       });
     });
 
-    xdescribe('returns game state', () => {
+    describe('returns game state', () => {
       it('gameOver', () => {
         const model = new Model({ ...config, rounds: 1 });
 
@@ -173,7 +173,7 @@ xdescribe('Game Model', () => {
     });
   });
 
-  xdescribe('.nextTurn', () => {
+  describe('.nextTurn', () => {
     const getModel = () => {
       const model = new Model(config);
       model.nextRound();
@@ -198,7 +198,7 @@ xdescribe('Game Model', () => {
       expect(model.currentPlayer).toBe(origPlayer + 2);
     });
 
-    xdescribe('returns round state', () => {
+    describe('returns round state', () => {
       it('roundOver', () => {
         const model = getModel();
 
@@ -253,7 +253,7 @@ xdescribe('Game Model', () => {
     });
   });
 
-  xdescribe('.playWord', () => {
+  describe('.playWord', () => {
     const getModel = () => {
       const model = new Model(config);
       model.nextRound();
@@ -307,7 +307,7 @@ xdescribe('Game Model', () => {
       });
     });
 
-    xdescribe('for invalid words', () => {
+    describe('for invalid words', () => {
       const getWord = (model) => {
         const letter = model.letterBank[0];
         return letter.repeat(model.letterBank.filter((l) => {

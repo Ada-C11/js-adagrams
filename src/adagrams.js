@@ -68,8 +68,14 @@ if (word.length > 6){
 } 
 },
 
-highestScoreFrom(){
+highestScoreFrom(words){
+  let winningWord = {
+    word: '',
+    score: 0
+  };
 
+  // 
+return winningWord;
 },
 
 }
