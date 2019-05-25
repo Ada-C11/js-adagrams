@@ -94,7 +94,7 @@ const Adagrams = {
         winningScore = currScore;
       }
       if (currScore == winningScore) {
-        if (currWord.length < winningWord.length) {
+        if (winningWord.length < 10 && (currWord.length < winningWord.length || currWord.length == 10)) {
           winningWord = currWord;
           winningScore = currScore;
         } 
