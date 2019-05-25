@@ -1,10 +1,11 @@
 import { ENGINE_METHOD_DIGESTS } from "constants";
 
-const hashIn = (arrOfLetters) => {
-  let hash = {};
+const hashIntoObject = (arrOfLetters) => {
+  let object = {};
   arrOfLetters.forEach(letter => {
-    hash[letter] ? hash[letter] += 1 : hash[letter] = 1;
-  return hash;
+    object[letter] ? object[letter] += 1 : object[letter] = 1;
+  });
+  return object;
 }
 
 const Adagrams = {
@@ -20,14 +21,14 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    let lettersHash = hashIn(lettersInHand);
+    let lettersObject = hashIntoObject(lettersInHand);
     
     for (let i = 0; i < input.length; i += 1) {
-      if (lettersHash.hasOwnProperty(input[i])) {
-        if (lettersHash[input[i]] <= 0) {
+      if (lettersObject.hasOwnProperty(input[i])) {
+        if (lettersObject[input[i]] <= 0) {
           return false;
         }
-        lettersHash[input[i]] -= 1;
+        lettersObject[input[i]] -= 1;
       }
       else {
         return false;
