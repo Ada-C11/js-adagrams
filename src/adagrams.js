@@ -87,7 +87,7 @@ const Adagrams = {
     }
     return winningWord;
   }
-}
+};
 
 
 //Do not remove this line or your tests will break!
