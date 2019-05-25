@@ -63,7 +63,6 @@ const Adagrams = {
 
   highestScoreFrom(words) {
 
-    // const allScores = words.map((word) => this.scoreWord(word));
     const allScores = words.map((word) => {
       const newWord = {
         'word': word,
@@ -81,53 +80,19 @@ const Adagrams = {
       if (allScores[i].score > winningWord.score) {
         winningWord.word = allScores[i].word;
         winningWord.score = allScores[i].score;
+      } else if (allScores[i].score === winningWord.score && allScores[i].word.length === 10) {
+        winningWord.word = allScores[i].word;
+        return winningWord;
+      } else if (allScores[i].score === winningWord.score && allScores[i].word.length < winningWord.word.length) {
+        winningWord.word = allScores[i].word;
+        return winningWord;
       }
     }
     return winningWord;
-  },
-
-
-  // console.log(allScores)
-
-  // // compare scores against one another to find highest
-  // const highestScore = allScores.reduce((high, current) => high < current ? current : high, 1);
-  // const tiedScores = allScores.filter(score => score == highestScore);
-
-
-  // console.log(`ALL SCORES: ${allScores}`)
-  // console.log(`TIED SCORES: ${tiedScores}`)
-  // console.log(`HIGHEST SCORES: ${highestScore[0].word}`)
-
-
-  // // if there is more than 1 word in the tiedScores array, find a word that is 10 letters and set that to the winning word.
-  // let shortWord = words[0];
-  // if (tiedScores.length > 1) {
-  //   console.log("WE HIT PAYDIRT")
-  //   for (let i = 0;i < words.length;i += 1) {
-  //     if (words[i].length === 10) {
-  //       console.log(words[i]);
-  //       return words[i];
-  //     } else if (words[i].length < shortWord.length) {
-  //       shortWord = words[i];
-  //     }
-  //   }
-  //   return shortWord;
-  // }
-
+  }
 }
-//   console.log(`BEST WORD: ${bestWord}`)
-//   const bestScore = Adagrams.scoreWord(bestWord)
-//   const winningWord = { 'word': bestWord, 'score': bestScore };
-// return winningWord;
-// }
-// const winningWord = { word: high}
-//return highestScore;
 
 
-
-
-
-// }
 
 //Do not remove this line or your tests will break!
 export default Adagrams;
