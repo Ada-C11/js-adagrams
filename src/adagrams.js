@@ -2,15 +2,8 @@ import { ENGINE_METHOD_DIGESTS } from "constants";
 
 const hashIn = (arrOfLetters) => {
   let hash = {};
-
-  arrOfLetters.forEach( (letter) => {
-    if (hash.hasOwnProperty(letter)) {
-      hash[letter] += 1;
-    }
-    else {
-      hash[letter] = 1;
-    }
-  })
+  arrOfLetters.forEach(letter => {
+    hash[letter] ? hash[letter] += 1 : hash[letter] = 1;
   return hash;
 }
 
