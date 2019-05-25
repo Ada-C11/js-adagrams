@@ -103,7 +103,4 @@ const Adagrams = {
 }
 
 
-// console.log(Adagrams.drawLetters());
-// console.log(Adagrams.scoreWord(''));
-// Do not remove this line or your tests will break!
 export default Adagrams;
