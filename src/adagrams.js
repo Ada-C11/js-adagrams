@@ -25,15 +25,15 @@ const letterQuantities = {
   'X': 1,
   'Y': 2,
   'Z': 1,
-}
+};
 
 // put keys into an array ['A'..'Z']
-const letters = Object.keys(letterQuantities)
+const letters = Object.keys(letterQuantities);
 
 // then loop over keys array; access letter Quantities key
 // and put the key (the letter) into letterTiles array 'value' number of times  
 
-let letterTiles = []
+let letterTiles = [];
 
 letters.forEach( function makeLetterTiles(letter) {
   // this could probably be a .map, too
@@ -41,7 +41,7 @@ letters.forEach( function makeLetterTiles(letter) {
   let tempString = letter.repeat(numberOfLetter);
   letterTiles = letterTiles.concat(tempString.split(''));
   // forEach always returns undefined
-})
+});
 // console.log('letter tiles: ', letterTiles);
 
 
@@ -56,16 +56,17 @@ letters.forEach( function makeLetterTiles(letter) {
 // ***********************************
 
 
+const BONUS_POINTS = 8;
 
-const letterScores = {
-  '1': ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
-  '2': ["D", "G"],
-  '3': ["B", "C", "M", "P"],
-  '4': ["F", "H", "V", "W", "Y"],
-  '5': ["K"],
-  '8': ["J", "X"],
-  '10': ["Q", "Z"],
-}
+const letterScores ={
+  'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
+  'D': 2, 'G': 2,
+  'B': 3, 'C': 3, 'M': 3, 'P': 3,
+  'F': 4, 'H': 4, 'V': 4, 'W': 4, 'Y': 4,
+  'K': 5,
+  'J': 8, 'X': 8,
+  'Q': 10, 'Z': 10,
+};
 
 
   
@@ -130,10 +131,14 @@ const Adagrams = {
   
   scoreWord(inputWord) {
     // maybe use .charAt(index)
-    const word = inputWord.toUpperCase();
+    const wordArray = inputWord.toUpperCase().split('');
     let wordPoints = 0;
 
-    if (inputWord.length > 6) wordPoints += 8;
+    if (inputWord.length > 6) wordPoints += BONUS_POINTS;
+    // console.log(`wordArray: ${wordArray}`)
+    wordArray.forEach((letter) => {
+      wordPoints += letterScores[letter];
+    });
 
     return wordPoints;
 
