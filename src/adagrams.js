@@ -75,14 +75,13 @@ const Adagrams = {
 
     // iterate over allScores to find the highest score
     // make the highestScore k/v pair from that
-    
+
     let winningWord = allScores[0];
     for (let i in allScores) {
       if (allScores[i].score > winningWord.score) {
         winningWord.word = allScores[i].word;
         winningWord.score = allScores[i].score;
       }
-      return winningWord;
     }
     return winningWord;
   },
