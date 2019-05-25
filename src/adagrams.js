@@ -42,7 +42,7 @@ letters.forEach( function makeLetterTiles(letter) {
   letterTiles = letterTiles.concat(tempString.split(''));
   // forEach always returns undefined
 })
-console.log('letter tiles: ', letterTiles);
+// console.log('letter tiles: ', letterTiles);
 
 
 // the above code should make this...
@@ -58,57 +58,80 @@ console.log('letter tiles: ', letterTiles);
 
 
 const letterScores = {
-    '1': ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
-    '2': ["D", "G"],
-    '3': ["B", "C", "M", "P"],
-    '4': ["F", "H", "V", "W", "Y"],
-    '5': ["K"],
-    '8': ["J", "X"],
-    '10': ["Q", "Z"],
-  }
+  '1': ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+  '2': ["D", "G"],
+  '3': ["B", "C", "M", "P"],
+  '4': ["F", "H", "V", "W", "Y"],
+  '5': ["K"],
+  '8': ["J", "X"],
+  '10': ["Q", "Z"],
+}
 
 
   
-  const Adagrams = {
-    drawLetters() {
-      let lettersInHand = []
-      let i = 0;
-      while (i<10) {
-        let randomIndex = Math.floor(Math.random() * letterTiles.length);
-        
-        if (letterTiles[randomIndex] != null){
-          lettersInHand.push(letterTiles[randomIndex]);
-          letterTiles[randomIndex] = null;
-          i += 1;
-        }
+const Adagrams = {
+  drawLetters() {
+    let lettersInHand = []
+    let i = 0;
+    while (i<10) {
+      let randomIndex = Math.floor(Math.random() * letterTiles.length);
+      
+      if (letterTiles[randomIndex] != null){
+        lettersInHand.push(letterTiles[randomIndex]);
+        letterTiles[randomIndex] = null;
+        i += 1;
       }
-    console.log('letters in hand: ' + lettersInHand)
+    }
+    // console.log('letters in hand: ' + lettersInHand)
     return lettersInHand;
   },
 
+
+usesAvailableLetters(inputWord, lettersInHand) {
   
-  usesAvailableLetters(input, lettersInHand) {
-    
-    // Return true if each letter in input is the same and in the same quantity of lettersInHand
-    let lettersInput = input.split('')
-    // make input into array of letters
-    if (lettersInput.length > 10) {
+  // Return true if each letter in input is the same and in the same quantity of lettersInHand
+  const inputLetters = inputWord.split('');
+  const handCopy = lettersInHand.slice(0);
+  // make a copy of lettersInHand array that can be modified
+  console.log(`inputLetters: ${inputLetters}`);
+  console.log(`handCopy: ${handCopy}`);
+  console.log(`inputWord: ${inputWord}`);
+  
+  if (inputLetters.length > lettersInHand.length) {
+    return false;
+  } else {    
+    // let contains = letter => {
       
-    input.forEach( === lettersInHand) {
-        // ^^^^^ STOPPED HERE, NEED TO CHANGE LOGIC TO CHECK EACH LETTER
-        // maybe use .charAt(index)
-        console.log(`true input: ${input}`)
-        console.log(`true letters in hand: ${lettersInHand}`)
-        return true;
+      // } 
+      
+    let isValid = true;
+    inputLetters.forEach((letter) => {
+      console.log('***********************************');
+      if (handCopy.includes(letter)){
+        // The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
+        let letterIndex = handCopy.indexOf(letter);
+        delete handCopy[letterIndex]; 
+        // The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
+        console.log(`true handCopy: ${handCopy}`);
       } else {
-        console.log(`false input: ${input}`)
-        console.log(`false letters in hand: ${lettersInHand}`)
-        return false;
-      }    
-    } else {
+        // console.log(`false input: ${inputWord}`)
+        console.log(`false handCopy: ${handCopy}`);
+        isValid = false;
+      } 
+    });
+    if (isValid) {
+      console.log('returning true');
+      return true;
+    }else{
       return false;
     }
-  }
+  }   
+},
+  
+  // const scoreword = (inputWord) => {
+  //   // maybe use .charAt(index)
+
+  // },
 };
 
 // Adagrams.drawLetters();
