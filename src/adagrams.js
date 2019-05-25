@@ -84,7 +84,20 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-
+    let winningObj = {}
+    let winningWord = "";
+    let winningScore = 0;
+    for (let i in words) {
+      let currWord = words[i];
+      let currScore = Adagrams.scoreWord(currWord);
+      if (currScore > winningScore) {
+        winningWord = currWord;
+        winningScore = currScore;
+      }
+    }
+    winningObj.word = winningWord;
+    winningObj.score = winningScore;
+    return winningObj
   },
 };
 
