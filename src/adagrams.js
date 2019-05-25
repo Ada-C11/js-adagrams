@@ -1,7 +1,9 @@
 // const declarations mantain constant values 
 // name of the function 
+
 const Adagrams = {
   drawLetters() {
+
     const letters = [
     "A", "A", "A", "A", "A", "A", "A", "A", "A",// A: 9
     "B", "B", // B: 2
@@ -44,16 +46,59 @@ const Adagrams = {
  let inputWord = input.split(""); // split input from user Array ["T", "h", "e"]
 
  for (let letter of inputWord) { // for every letter in input 
-  let index = lettersInHand.indexOf(letter);//  locate values of letter in an array.
+  let index = lettersInHand.indexOf(letter);// index of where the letter can be found in the array
   if (index != -1) { //-1 if letter is not present.
-    lettersInHand.splice(index, 1);//removes the letter if present
-  } else {
+    lettersInHand.splice(index, 1);//removes all the letters if present
+  } 
+  else {
     return false;
   }
 }
 return true;
-}
+},
 
+scoreWord(word){ //The  // Wave 3
+  const valueOne = [ "A", "E", "I", "O", "U", "L", "N", "R", "S", "T"	]; //Arrays, things happen inside the function     
+  const valueTwo = ["D", "G"];	     
+  const valueThree = ["B", "C", "M", "P"];	     
+  const valueFour = ["F", "H", "V", "W", "Y"];	     
+  const valueFive = ["K"];	     
+  const valueEight = ["J", "X"];	     
+  const valueTen = ["Q", "Z"];	          
+  let splitWord = word.toUpperCase().split("");   // ["T", "H", "E"] 
+  let wordLength = word.length;
+  let score = 0;     
+  
+  for (let letter of splitWord) {//E  -  score = 6
+    if(valueOne.indexOf(letter)>-1){
+      score = score + 1;
+    }
+    if(valueTwo.indexOf(letter)>-1){
+      score = score + 2;
+    }
+    if(valueThree.indexOf(letter)>-1){
+      score = score + 3;
+    }
+    if(valueFour.indexOf(letter)>-1){
+      score = score + 4;
+    }
+    if(valueFive.indexOf(letter)>-1){
+      score = score + 5;
+    }
+    if(valueEight.indexOf(letter)>-1){
+      score = score + 8;
+    }
+    if(valueTen.indexOf(letter)>-1){
+      score = score + 10;
+    }
+  }
+
+  if(wordLength >= 7 && wordLength <= 10) {
+    score = score + 8;
+  }
+
+  return score;
+  }
 };
 
 // how to know if it uses available letters
