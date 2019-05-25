@@ -84,7 +84,6 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    let winningObj = {}
     let winningWord = "";
     let winningScore = 0;
     for (let i in words) {
@@ -101,9 +100,8 @@ const Adagrams = {
         } 
       }
     }
-    winningObj.word = winningWord;
-    winningObj.score = winningScore;
-    return winningObj
+    const winningObj = { word: winningWord, score: winningScore };
+    return winningObj;
   },
 };
 
