@@ -24,8 +24,7 @@ const Adagrams = {
 
   usesAvailableLetters(input, lettersInHand) {
     let lettersObject = hashIntoObject(lettersInHand);
-    
-    for (let i = 0; i < input.length; i += 1) {
+    for (let i in input) {
       if (!lettersObject[input[i]] || lettersObject[input[i]] <= 0) return false;
 
       lettersObject[input[i]] -= 1;
