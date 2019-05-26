@@ -42,13 +42,8 @@ letters.forEach( function makeLetterTiles(letter) {
   letterTiles = letterTiles.concat(tempString.split(''));
   // forEach always returns undefined
 });
-// console.log('letter tiles: ', letterTiles);
 
-
-// the above code should make this...
-// letterTiles: ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'D', 'D', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'F', 'F', 'G', 'G', 'G', 'H', 'H', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'J', 'K', 'L', 'L', 'L', 'L', 'M', 'M', 'N', 'N', 'N', 'N', 'N', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'P', 'P', 'Q', 'R', 'R', 'R', 'R', 'R', 'R', 'S', 'S', 'S', 'S', 'T', 'T', 'T', 'T', 'T', 'T', 'U', 'U', 'U', 'U', 'V', 'V', 'W', 'W', 'X', 'Y', 'Y', 'Z']
 // ***********************************
-
 // ANOTHER APPROACH:
 // randomly pick a key from keys array until hand.length === 10
 // as you pick a key, -=1 value
@@ -68,8 +63,6 @@ const letterScores = {
   'Q': 10, 'Z': 10,
 };
 
-
-
 const Adagrams = {
   drawLetters() {
     let lettersInHand = []
@@ -83,45 +76,31 @@ const Adagrams = {
         i += 1;
       }
     }
-    // console.log('letters in hand: ' + lettersInHand)
     return lettersInHand;
   },
-
 
   usesAvailableLetters(inputWord, lettersInHand) {
     
     // Return true if each letter in input is the same and in the same quantity of lettersInHand
     const inputLetters = inputWord.split('');
     const handCopy = lettersInHand.slice(0);
-    // make a copy of lettersInHand array that can be modified
-    // console.log(`inputLetters: ${inputLetters}`);
-    // console.log(`handCopy: ${handCopy}`);
-    // console.log(`inputWord: ${inputWord}`);
     
     if (inputLetters.length > lettersInHand.length) {
       return false;
-    } else {    
-      // let contains = letter => {
-        
-        // } 
-        
+    } else {         
       let isValid = true;
       inputLetters.forEach((letter) => {
-        // console.log('***********************************');
+        
         if (handCopy.includes(letter)){
           // The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
           let letterIndex = handCopy.indexOf(letter);
           delete handCopy[letterIndex]; 
           // The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
-          // console.log(`true handCopy: ${handCopy}`);
         } else {
-          // console.log(`false input: ${inputWord}`)
-          // console.log(`false handCopy: ${handCopy}`);
           isValid = false;
         } 
       });
       if (isValid) {
-        // console.log('returning true');
         return true;
       } else {
         return false;
@@ -129,57 +108,86 @@ const Adagrams = {
     }   
   },
   
-  
-  scoredWords: {
+  savedWords: {
     // 'A': 1,
     // 'DOG': 5,
     // 'WHIMSY': 17
   }, 
   
   scoreWord(inputWord) {
-    // maybe use .charAt(index)
+    // this function is passed by reference to the map function in the spec file as Adagrams.scoreWord
+    // doing so causes scoreWord to 'lose context': 'this' becomes undefined
+    // It is vital that scoreWord does not reference 'this'
+
     const wordArray = inputWord.toUpperCase().split('');
     let wordPoints = 0;
 
     if (inputWord.length > 6) wordPoints += BONUS_POINTS;
-    // console.log(`wordArray: ${wordArray}`)
     
     wordArray.forEach(function(letter) {
       wordPoints += letterScores[letter];
     });
-    
-    // if (this){
-    //   this.scoredWords[inputWord.toUpperCase()] = wordPoints;
-    // }
 
     return wordPoints;
-    
   },
   
   highestScoreFrom (words) {
-    console.log(`******* scoredWords: *************`);
-    console.log(this.scoredWords);
-    
-    // words.forEach(word =>{
-    //   this.scoreWord(word);
-    // });
+    // console.log(`******* savedWords: *************`);
+    // console.log(this.savedWords);
 
+    // loop through array of incoming words
+    // score each one and add the word: score pair to savedWords object
     words.forEach((word) => {
-      this.scoredWords[word.toUpperCase()] = this.scoreWord(word);
+      this.savedWords[word.toUpperCase()] = this.scoreWord(word);
     });
+    // ^^^^ see line 104 of spec file
+    // this needs to be in highestScoreFrom
+    // if not, you get hours of investigating one error
+    // this.savedWords --- cannot read property savedWords of undefined
+    
+    
+    // const wordsArray = this.savedWords.keys;
+    // console.log(wordsArray);
+    // console.log('**********************')
 
-    console.log(this.scoredWords);
-    console.log('**********************')
-
-
-
-    let bestWord = words[0];
-    let bestScore = this.scoredWords[bestWord];
+    let bestWord = '';
+    let bestWordLength = 0;
+    let bestScore = 0;
 
     words.forEach( (word) => {
-      if (this.scoredWords[word] > bestScore) {
+      let thisWordLength = word.length;
+
+      console.log('********* WORD *************')
+      console.log(`word: ${word}`);
+      console.log(`bestWordLength: ${bestWordLength}`);
+      console.log(`thisWordLength: ${thisWordLength}`);
+
+      if (this.savedWords[word] > bestScore) {
         bestWord = word;
-        bestScore = this.scoredWords[word];
+        bestScore = this.savedWords[word];
+        bestWordLength = thisWordLength;
+        console.log('**********************')
+        console.log(`bestWord: ${bestWord}`)
+        console.log(`bestScore: ${bestScore}`)
+        console.log(`bestWordLength: ${bestWordLength}`)
+      } else if (this.savedWords[word] === bestScore) {
+        if (thisWordLength === 10 && bestWordLength < 10) {
+          bestWord = word;
+          bestScore = this.savedWords[word];
+          bestWordLength = thisWordLength;
+        console.log('********* tie score if *************')
+        console.log(`bestWord: ${bestWord}`)
+        console.log(`bestScore: ${bestScore}`)
+        console.log(`bestWordLength: ${bestWordLength}`)
+        } else if (thisWordLength < bestWordLength && bestWordLength < 10) {
+          bestWord = word;
+          bestScore = this.savedWords[word];
+          bestWordLength = thisWordLength;
+          console.log('********* tie score else if *************')
+          console.log(`bestWord: ${bestWord}`)
+          console.log(`bestScore: ${bestScore}`)
+          console.log(`bestWordLength: ${bestWordLength}`)
+        }
       }
     });
 
@@ -189,8 +197,6 @@ const Adagrams = {
     };
     
   },
-  
-  // log: function(){console.log(`scoredWords: ${this.scoredWords}`);}
   
 };
 
