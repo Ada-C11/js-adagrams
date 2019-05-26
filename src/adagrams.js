@@ -1,6 +1,6 @@
 import { ENGINE_METHOD_DIGESTS } from "constants";
 
-const hashIntoObject = (arrOfLetters) => {
+const hashIntoObject = arrOfLetters => {
   let object = {};
   arrOfLetters.forEach(letter => {
     object[letter] ? object[letter] += 1 : object[letter] = 1;
@@ -32,7 +32,7 @@ const Adagrams = {
   },
 
   scoreWord(word) {
-    let score = 0
+    let score = 0;
     if (word.length >= 7) {
       score += 8;
     }
@@ -94,7 +94,9 @@ const Adagrams = {
         winningScore = currScore;
       }
       if (currScore == winningScore) {
-        if (winningWord.length < 10 && (currWord.length < winningWord.length || currWord.length == 10)) {
+        if (winningWord.length < 10 && 
+          (currWord.length == 10 ||
+            currWord.length < winningWord.length)) {
           winningWord = currWord;
           winningScore = currScore;
         } 
