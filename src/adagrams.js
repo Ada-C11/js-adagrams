@@ -11,11 +11,13 @@ const hashIntoObject = arrOfLetters => {
 const Adagrams = {
   drawLetters() {
     // Implement this method for wave 1
-    const letterPool = 'AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ'.split('');
+    let letterPool = 'AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ'.split('');
     let lettersInHand = [];
     
     for (let i = 0; i < 10; i += 1) {
-      lettersInHand.push(letterPool[Math.floor(Math.random() * letterPool.length)]);
+      const randomIndex = Math.floor(Math.random() * letterPool.length);
+      lettersInHand.push(letterPool[randomIndex]);
+      letterPool.splice(randomIndex, 1);
     }
     return lettersInHand;
   },
