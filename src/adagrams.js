@@ -58,7 +58,7 @@ letters.forEach( function makeLetterTiles(letter) {
 
 const BONUS_POINTS = 8;
 
-const letterScores ={
+const letterScores = {
   'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
   'D': 2, 'G': 2,
   'B': 3, 'C': 3, 'M': 3, 'P': 3,
@@ -69,7 +69,7 @@ const letterScores ={
 };
 
 
-  
+
 const Adagrams = {
   drawLetters() {
     let lettersInHand = []
@@ -129,6 +129,13 @@ const Adagrams = {
     }   
   },
   
+  
+  scoredWords: {
+    // 'A': 1,
+    // 'DOG': 5,
+    // 'WHIMSY': 17
+  }, 
+  
   scoreWord(inputWord) {
     // maybe use .charAt(index)
     const wordArray = inputWord.toUpperCase().split('');
@@ -136,14 +143,55 @@ const Adagrams = {
 
     if (inputWord.length > 6) wordPoints += BONUS_POINTS;
     // console.log(`wordArray: ${wordArray}`)
-    wordArray.forEach((letter) => {
+    
+    wordArray.forEach(function(letter) {
       wordPoints += letterScores[letter];
     });
+    
+    // if (this){
+    //   this.scoredWords[inputWord.toUpperCase()] = wordPoints;
+    // }
 
     return wordPoints;
-
+    
   },
+  
+  highestScoreFrom (words) {
+    console.log(`******* scoredWords: *************`);
+    console.log(this.scoredWords);
+    
+    // words.forEach(word =>{
+    //   this.scoreWord(word);
+    // });
 
+    words.forEach((word) => {
+      this.scoredWords[word.toUpperCase()] = this.scoreWord(word);
+    });
+
+    console.log(this.scoredWords);
+    console.log('**********************')
+
+
+
+    let bestWord = words[0];
+    let bestScore = this.scoredWords[bestWord];
+
+    words.forEach( (word) => {
+      if (this.scoredWords[word] > bestScore) {
+        bestWord = word;
+        bestScore = this.scoredWords[word];
+      }
+    });
+
+    return {
+      'word': bestWord, 
+      'score': bestScore
+    };
+    
+  },
+  
+  // log: function(){console.log(`scoredWords: ${this.scoredWords}`);}
+  
 };
 
 // Adagrams.drawLetters();
