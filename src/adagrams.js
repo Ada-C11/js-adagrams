@@ -108,11 +108,7 @@ const Adagrams = {
     }   
   },
   
-  savedWords: {
-    // 'A': 1,
-    // 'DOG': 5,
-    // 'WHIMSY': 17
-  }, 
+  savedWords: { }, 
   
   scoreWord(inputWord) {
     // this function is passed by reference to the map function in the spec file as Adagrams.scoreWord
@@ -144,11 +140,6 @@ const Adagrams = {
     // this needs to be in highestScoreFrom
     // if not, you get hours of investigating one error
     // this.savedWords --- cannot read property savedWords of undefined
-    
-    
-    // const wordsArray = this.savedWords.keys;
-    // console.log(wordsArray);
-    // console.log('**********************')
 
     let bestWord = '';
     let bestWordLength = 0;
@@ -157,36 +148,19 @@ const Adagrams = {
     words.forEach( (word) => {
       let thisWordLength = word.length;
 
-      console.log('********* WORD *************')
-      console.log(`word: ${word}`);
-      console.log(`bestWordLength: ${bestWordLength}`);
-      console.log(`thisWordLength: ${thisWordLength}`);
-
       if (this.savedWords[word] > bestScore) {
         bestWord = word;
         bestScore = this.savedWords[word];
         bestWordLength = thisWordLength;
-        console.log('**********************')
-        console.log(`bestWord: ${bestWord}`)
-        console.log(`bestScore: ${bestScore}`)
-        console.log(`bestWordLength: ${bestWordLength}`)
       } else if (this.savedWords[word] === bestScore) {
         if (thisWordLength === 10 && bestWordLength < 10) {
           bestWord = word;
           bestScore = this.savedWords[word];
           bestWordLength = thisWordLength;
-        console.log('********* tie score if *************')
-        console.log(`bestWord: ${bestWord}`)
-        console.log(`bestScore: ${bestScore}`)
-        console.log(`bestWordLength: ${bestWordLength}`)
         } else if (thisWordLength < bestWordLength && bestWordLength < 10) {
           bestWord = word;
           bestScore = this.savedWords[word];
           bestWordLength = thisWordLength;
-          console.log('********* tie score else if *************')
-          console.log(`bestWord: ${bestWord}`)
-          console.log(`bestScore: ${bestScore}`)
-          console.log(`bestWordLength: ${bestWordLength}`)
         }
       }
     });
