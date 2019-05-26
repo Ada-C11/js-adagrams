@@ -49,6 +49,36 @@ const Adagrams = {
 
     return score;
   },
+
+  highestScoreFrom(words) {
+
+    let highWord = words[0];
+    let highScore = 0;
+    let ties = [];
+    
+    for (const curWord in words) {
+      let curScore = Adagrams.scoreWord(words[curWord]);
+      if (curScore > highScore) {
+        highWord = words[curWord];
+        highScore = curScore;
+        ties = [words[curWord]];
+      } else if (curScore === highScore) {
+        ties.push(words[curWord]);
+      }
+    }
+
+    for (const tieWord in ties) {
+      if (ties[tieWord].length === 10) {
+        highWord = ties[tieWord];
+        break;
+      } else if (ties[tieWord].length < highWord.length) {
+        highWord = ties[tieWord];
+      }
+    }
+
+    let highest = { word: highWord, score: highScore };
+    return highest;
+  },
 };
 
 // Do not remove this line or your tests will break!
