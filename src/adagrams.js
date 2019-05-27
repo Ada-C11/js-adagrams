@@ -1,25 +1,36 @@
-const letterArray = ['a','a','a','a','a','a','a','a','a','b','b','c','c','d','d','d','d',
-                  'e','e','e','e','e','e','e','e','e','e','e','e',
-                  'f','f','g','g','g','h','h','i','i','i','i','i','i','i','i','i',
-                  'j','k','l','l','l','l','m','m','n','n','n','n','n','n',
-                  'o','o','o','o','o','o','o','o','p','p','q','r','s','s','s','s',
-                  't','t','t','t','t','t','u','u','u','u','v','v','w','w',
-                  'x','y','y','z']
+const letterPool = ['A','A','A','A','A','A','A','A','A','B','B','C','C','D','D','D','D',
+                    'E','E','E','E','E','E','E','E','E','E','E','E',
+                    'F','F','G','G','G','H','H','I','I','I','I','I','I','I','I','I',
+                    'J','K','L','L','L','L','M','M','N','N','N','N','N','N',
+                    'O','O','O','O','O','O','O','O','P','P','Q','R','S','S','S','S',
+                    'T','T','T','T','T','T','U','U','U','U','V','V','W','W',
+                    'X','Y','Y','Z']
 
 
 const Adagrams = {
   
   drawLetters() {
     // Implement this method for wave 1
-    const shuffled = letterArray.sort(()=> 0.5 - Math.random());
+    const shuffled = letterPool.sort(()=> 0.5 - Math.random());
     let selected = shuffled.slice(0, 10);
     return selected;
+  },
+  usesAvailableLetters(input, lettersInHand){
+    input = Array.from(input);
+    for(let i = 0; i < input.length; i += 1) {
+      if (!lettersInHand.includes(input[i])){
+        return false;
+      }
+      lettersInHand.splice(lettersInHand.indexOf(input[i]), 1);
+    }
+    return true;
   }
 };
 
-console.log(Adagrams.drawLetters());
+// let lettersInHand = ['B','C','D']
+// console.log(Adagrams.usesAvailableLetters('ABC',lettersInHand));
 
 
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
