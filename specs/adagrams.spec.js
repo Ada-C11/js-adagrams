@@ -12,7 +12,7 @@ describe('Adagrams', () => {
       const drawn = Adagrams.drawLetters();
 
       expect(Array.isArray(drawn)).toBe(true);
-      drawn.forEach((l) => {
+      drawn.forEach(l => {
         expect(l).toMatch(/^[A-Z]$/);
       });
     });
@@ -41,12 +41,11 @@ describe('Adagrams', () => {
 
       const isValid = Adagrams.usesAvailableLetters(word, drawn);
       expect(isValid).toBe(false);
-
     });
   });
 
   describe('scoreWord', () => {
-    const expectScores = (wordScores) => {
+    const expectScores = wordScores => {
       Object.entries(wordScores).forEach(([word, score]) => {
         expect(Adagrams.scoreWord(word)).toBe(score);
       });
@@ -54,32 +53,32 @@ describe('Adagrams', () => {
 
     it('returns an accurate numerical score according to the score chart', () => {
       expectScores({
-        'A': 1,
-        'DOG': 5,
-        'WHIMSY': 17
+        A: 1,
+        DOG: 5,
+        WHIMSY: 17,
       });
     });
 
     it('returns a score regardless of the input case', () => {
       expectScores({
-        'a': 1,
-        'dog': 5,
-        'wHiMsY': 17
+        a: 1,
+        dog: 5,
+        wHiMsY: 17,
       });
     });
 
     it('returns a score of 0 if given an empty input', () => {
       expectScores({
-        '': 0
+        '': 0,
       });
     });
 
     it('adds an extra 8 points if word is 7 or more characters long', () => {
       expectScores({
-        'XXXXXXX': 64,
-        'XXXXXXXX': 72,
-        'XXXXXXXXX': 80,
-        'XXXXXXXXXX': 88,
+        XXXXXXX: 64,
+        XXXXXXXX: 72,
+        XXXXXXXXX: 80,
+        XXXXXXXXXX: 88,
       });
     });
   });
@@ -100,10 +99,10 @@ describe('Adagrams', () => {
     });
 
     describe('in case of tied score', () => {
-      const expectTie = (words) => {
-        const scores = words.map(Adagrams.scoreWord);
-        const highScore = scores.reduce((h, s) => h < s ? s : h, 0);
-        const tiedWords = scores.filter((s) => s == highScore);
+      const expectTie = words => {
+        const scores = words.map(word => Adagrams.scoreWord(word));
+        const highScore = scores.reduce((h, s) => (h < s ? s : h), 0);
+        const tiedWords = scores.filter(s => s == highScore);
 
         // Expect at least two tied words
         expect(tiedWords.length).toBeGreaterThan(1);
@@ -111,7 +110,10 @@ describe('Adagrams', () => {
 
       it('selects the word with 10 letters', () => {
         const words = ['AAAAAAAAAA', 'BBBBBB'];
-        const correct = { word: 'AAAAAAAAAA', score: Adagrams.scoreWord('AAAAAAAAAA') };
+        const correct = {
+          word: 'AAAAAAAAAA',
+          score: Adagrams.scoreWord('AAAAAAAAAA'),
+        };
         expectTie(words);
 
         expect(Adagrams.highestScoreFrom(words)).toEqual(correct);
@@ -129,8 +131,14 @@ describe('Adagrams', () => {
 
       it('selects the first word when both have same length', () => {
         const words = ['AAAAAAAAAA', 'EEEEEEEEEE'];
-        const first = { word: 'AAAAAAAAAA', score: Adagrams.scoreWord('AAAAAAAAAA') };
-        const second = { word: 'EEEEEEEEEE', score: Adagrams.scoreWord('EEEEEEEEEE') };
+        const first = {
+          word: 'AAAAAAAAAA',
+          score: Adagrams.scoreWord('AAAAAAAAAA'),
+        };
+        const second = {
+          word: 'EEEEEEEEEE',
+          score: Adagrams.scoreWord('EEEEEEEEEE'),
+        };
         expectTie(words);
 
         expect(Adagrams.highestScoreFrom(words)).toEqual(first);

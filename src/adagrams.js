@@ -15,7 +15,7 @@ const Adagrams = {
   letterPoints: { a: 1, e: 1, i: 1, o: 1, u: 1, n: 1, r: 1, 
                   s: 1, t: 1, d: 2, g: 2, l: 1, b: 3, c: 3, 
                   m: 3, p: 3, f: 4, h: 4, v: 4, w: 4, y: 4, 
-                  k: 5, j: 8, x: 8, q: 10, z: 10 },
+                  k: 5, j: 8, x: 8, q: 10, z: 10},
 
   drawLetters() {
     let drawnLetters = [];
@@ -49,7 +49,7 @@ const Adagrams = {
   },
 
   scoreWord(word) {
-    if (word.length == 0) return 0;
+    if (word.length == 0 || !word) return 0;
     //prettier-ignore
     const score = word.split('').map(char => this.letterPoints[char.toLowerCase()]);
     if (score.length >= 7) {
@@ -57,8 +57,77 @@ const Adagrams = {
     }
     return score.reduce((a, b) => a + b);
   },
+
+  highestScoreFrom(words) {
+    const wordScorePairs = this.helper.mapScores(words);
+    const wordTies = this.helper.getTies(
+      this.helper.sortWordsByScore(wordScorePairs)
+    );
+    // No tie, return highest scoring word
+    if (wordTies.length == 1) return wordTies[0];
+    // determine eligible winning word
+    const eligibileWinningWord = this.helper.getEligibileWinningWord(
+      this.helper.sortWordsByLength(wordTies)
+    );
+    // ensures first occurence of an eligibile winning word from orginal list of words is returned.
+    return this.helper.findFirstWinningWord(
+      eligibileWinningWord.word.length,
+      eligibileWinningWord.score,
+      wordScorePairs
+    );
+  },
+
+  helper: {
+    mapScores(words) {
+      return words.map(word1 => {
+        let wordPair = {};
+        wordPair.word = word1;
+        wordPair.score = Adagrams.scoreWord(word1);
+        return wordPair;
+      });
+    },
+
+    getTies(scores, index = 0, keeper = null) {
+      keeper = keeper || [scores[index]];
+      const scoreChecker = scores[index + 1] ? scores[index + 1].score : null;
+      if (!keeper || scores[index].score != scoreChecker) {
+        return keeper;
+      } else {
+        keeper.push(scores[index + 1]);
+        return this.getTies(scores, index + 1, keeper);
+      }
+    },
+
+    sortWordsByScore(wordScorePairs) {
+      return wordScorePairs.sort((word1, word2) => word2.score - word1.score);
+    },
+
+    getEligibileWinningWord(sortedWordPairTies) {
+      let wordScorePair;
+      if (sortedWordPairTies[0].word.length == 10) {
+        wordScorePair = sortedWordPairTies[0];
+      } else {
+        wordScorePair = sortedWordPairTies[sortedWordPairTies.length - 1];
+      }
+      return wordScorePair;
+    },
+
+    sortWordsByLength(wordScorePairs) {
+      return wordScorePairs.sort(
+        (word1, word2) => word2.word.length - word1.word.length
+      );
+    },
+
+    findFirstWinningWord(wordLength, score, wordScorePairs) {
+      const winningWord = wordScorePairs.find(
+        wordScorePair =>
+          wordScorePair.word.length == wordLength &&
+          wordScorePair.score == score
+      );
+      return winningWord;
+    },
+  },
 };
-// console.log(Adagrams.scoreWord('DOG'));
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
