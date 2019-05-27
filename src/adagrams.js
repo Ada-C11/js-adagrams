@@ -60,7 +60,7 @@ const Adagrams = {
 
   // This method is less effiecient (time complexity of O(nlog(n)) where n is the number of words),
   // since I am leveraging sorting compared the other approach of iteration and comparison
-  // (time complexity of O(n)), but I wanted to practice different logic and syntax in javascript. ¯\_(ツ)_/¯
+  // (time complexity of O(n)), but I wanted to practice mapping, sorting, etc in javascript. ¯\_(ツ)_/¯
   highestScoreFrom(words) {
     const wordScorePairs = this.helper.mapScores(words);
     const wordTies = this.helper.getTies(
