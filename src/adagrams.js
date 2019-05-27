@@ -20,7 +20,7 @@ const Adagrams = {
   drawLetters() {
     let drawnLetters = [];
     for (let i = 0; i < 10; i += 1) {
-      const letterCount = this.letters.length;
+      const letterCount = this.letters.length - i;
       const randomIndex = Math.floor(Math.random() * Math.floor(letterCount));
       const selectIndex = letterCount - 1 - i;
       const temp = this.letters[selectIndex];
