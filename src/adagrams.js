@@ -58,6 +58,9 @@ const Adagrams = {
     return score.reduce((a, b) => a + b);
   },
 
+  // This method is less effiecient (time complexity of O(nlog(n)) where n is the number of words),
+  // since I am leveraging sorting compared the other approach of iteration and comparison
+  // (time complexity of O(n)), but I wanted to practice different logic and syntax in javascript. ¯\_(ツ)_/¯
   highestScoreFrom(words) {
     const wordScorePairs = this.helper.mapScores(words);
     const wordTies = this.helper.getTies(
@@ -87,6 +90,10 @@ const Adagrams = {
       });
     },
 
+    sortWordsByScore(wordScorePairs) {
+      return wordScorePairs.sort((word1, word2) => word2.score - word1.score);
+    },
+
     getTies(scores, index = 0, keeper = null) {
       keeper = keeper || [scores[index]];
       const scoreChecker = scores[index + 1] ? scores[index + 1].score : null;
@@ -98,8 +105,10 @@ const Adagrams = {
       }
     },
 
-    sortWordsByScore(wordScorePairs) {
-      return wordScorePairs.sort((word1, word2) => word2.score - word1.score);
+    sortWordsByLength(wordScorePairs) {
+      return wordScorePairs.sort(
+        (word1, word2) => word2.word.length - word1.word.length
+      );
     },
 
     getEligibileWinningWord(sortedWordPairTies) {
@@ -110,12 +119,6 @@ const Adagrams = {
         wordScorePair = sortedWordPairTies[sortedWordPairTies.length - 1];
       }
       return wordScorePair;
-    },
-
-    sortWordsByLength(wordScorePairs) {
-      return wordScorePairs.sort(
-        (word1, word2) => word2.word.length - word1.word.length
-      );
     },
 
     findFirstWinningWord(wordLength, score, wordScorePairs) {
