@@ -21,9 +21,7 @@ const Adagrams = {
     return lettersInHand;
   },
   usesAvailableLetters(input, lettersInHand) {
-    if (input.length > lettersInHand.length) {
-      return false;
-    }
+    if (input.length > lettersInHand.length) return false
     const lettersHash = {}
     lettersInHand.forEach( function(letter) {
       lettersHash[letter] ? lettersHash[letter] += 1 : lettersHash[letter] = 1;
@@ -36,9 +34,7 @@ const Adagrams = {
     inputArray.forEach ( function(letter) {
       if (lettersHash[letter]) {
         lettersHash[letter] -= 1;
-        if (lettersHash[letter] < 0) {
-          validWord = false;
-        }
+        if (lettersHash[letter] < 0) validWord = false
       } else {
         validWord = false;
       }
