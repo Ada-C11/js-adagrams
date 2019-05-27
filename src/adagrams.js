@@ -49,7 +49,7 @@ const Adagrams = {
   },
 
   scoreWord(word) {
-    if (word.length == 0 || !word) return 0;
+    if (word.length === 0 || !word) return 0;
     //prettier-ignore
     const score = word.split('').map(char => this.letterPoints[char.toLowerCase()]);
     if (score.length >= 7) {
@@ -67,7 +67,7 @@ const Adagrams = {
       this.helper.sortWordsByScore(wordScorePairs)
     );
     // No tie, return highest scoring word
-    if (wordTies.length == 1) return wordTies[0];
+    if (wordTies.length === 1) return wordTies[0];
     // determine eligible winning word
     const eligibileWinningWord = this.helper.getEligibileWinningWord(
       this.helper.sortWordsByLength(wordTies)
@@ -97,7 +97,7 @@ const Adagrams = {
     getTies(scores, index = 0, keeper = null) {
       keeper = keeper || [scores[index]];
       const scoreChecker = scores[index + 1] ? scores[index + 1].score : null;
-      if (!keeper || scores[index].score != scoreChecker) {
+      if (!keeper || scores[index].score !== scoreChecker) {
         return keeper;
       } else {
         keeper.push(scores[index + 1]);
@@ -113,7 +113,7 @@ const Adagrams = {
 
     getEligibileWinningWord(sortedWordPairTies) {
       let wordScorePair;
-      if (sortedWordPairTies[0].word.length == 10) {
+      if (sortedWordPairTies[0].word.length === 10) {
         wordScorePair = sortedWordPairTies[0];
       } else {
         wordScorePair = sortedWordPairTies[sortedWordPairTies.length - 1];
@@ -124,8 +124,8 @@ const Adagrams = {
     findFirstWinningWord(wordLength, score, wordScorePairs) {
       const winningWord = wordScorePairs.find(
         wordScorePair =>
-          wordScorePair.word.length == wordLength &&
-          wordScorePair.score == score
+          wordScorePair.word.length === wordLength &&
+          wordScorePair.score === score
       );
       return winningWord;
     },
