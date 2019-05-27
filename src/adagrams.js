@@ -58,7 +58,7 @@ class Adagrams {
 
     static highestScoreFrom(words){
         let winningWord = {
-            word: null,
+            'word': null,
             'score': 0,
         };
 
