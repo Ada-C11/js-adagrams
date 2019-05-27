@@ -3,8 +3,8 @@ const _ = require("lodash")
 const Adagrams = {
   drawLetters() {
     const availLetters = {
-      A: 9, N: 6, B: 2, O: 8, C: 2, P: 2, D: 4, Q: 1, E: 12,
-      R: 6, F: 2, S: 4, G: 3, T: 6, H: 2, U: 4, I: 9, V: 2, J: 1, W: 2, K: 1, X: 1, L: 4, Y: 2, M: 2, Z: 1
+      A: 9, N: 6, B: 2, O: 8, C: 2, P: 2, D: 4, Q: 1, E: 12, R: 6, F: 2, S: 4, G: 3, 
+      T: 6, H: 2, U: 4, I: 9, V: 2, J: 1, W: 2, K: 1, X: 1, L: 4, Y: 2, M: 2, Z: 1
     }
 
     const generateLetters = function generateLetters(availLetters) {
@@ -26,27 +26,24 @@ const Adagrams = {
     }
     const lettersHash = {}
     lettersInHand.forEach( function(letter) {
-      if (lettersHash[letter]) {
-        lettersHash[letter] += 1;
-      } else {
-        lettersHash[letter] = 1;
+      lettersHash[letter] ? lettersHash[letter] += 1 : lettersHash[letter] = 1;
       }
-    })
+    )
 
     input.toUpperCase();
-    let boolean = true;
+    let validWord = true;
     const inputArray = input.split('');
     inputArray.forEach ( function(letter) {
       if (lettersHash[letter]) {
         lettersHash[letter] -= 1;
         if (lettersHash[letter] < 0) {
-          boolean = false;
+          validWord = false;
         }
       } else {
-        boolean = false;
+        validWord = false;
       }
     })
-    return boolean;
+    return validWord;
   },  
 
   scoreWord(word){
@@ -57,9 +54,7 @@ const Adagrams = {
     let total = 0;
     word = word.toUpperCase();
     const wordArray = word.split('');
-    if (wordArray.length > 6) {
-      total += 8;
-    }
+    if (wordArray.length > 6) { total += 8 }
     wordArray.forEach(letter => total += letterScore[letter]);
     return total;
   },
