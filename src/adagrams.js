@@ -67,7 +67,7 @@ const Adagrams = {
       Z: 10
     };
 
-    points = 0;
+    let points = 0;
     const wordArray = word.toUpperCase().split('');
 
     wordArray.forEach((letter) => {
@@ -80,10 +80,29 @@ const Adagrams = {
 
     return points;
   },
+
+  highestScoreFrom(words) {
+    let winningScore = 0;
+    let winningWord = '';
+    
+    for (const word of words) {
+      const eachScore = this.scoreWord(word);
+      if (eachScore > winningScore) {
+        console.log(word);
+        winningScore = eachScore;
+        winningWord = word;
+      } 
+    }
+    
+    return {
+      word: winningWord,
+      score: winningScore
+    }
+  }
 };
 
 // const letters = ['d', 'o', 'g', 'f', 'q', 'e', 'v', 'i', 'a', 'd'];
-// console.log(Adagrams.scoreWord('fqe'));
+// console.log(Adagrams.highestScoreFrom(['fqe', 'dog', 'ba']));
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
