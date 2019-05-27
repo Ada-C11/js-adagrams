@@ -98,10 +98,73 @@ scoreWord(word){ //The  // Wave 3
   }
 
   return score;
-  }
-};
+  },
 
-// how to know if it uses available letters
-//console.log(Adagrams.drawLetters());
-// Do not remove this line or your tests will break!
-export default Adagrams;
+  highestScoreFrom(words) { //gets an array of strings 
+      let maxScore = 0;
+      let maxRep = 0;
+      let wordMaxScore = "";
+      let list = [];
+
+      for(let word of words) {//build a "hash" with word, score and length 
+        list.push({
+          word:word.toUpperCase(),
+          score: this.scoreWord(word.toUpperCase()),
+          length:word.length
+        });
+      }
+      for(let item of list) { //get max score
+        if(item.score>maxScore){
+          maxScore = item.score;
+        }
+      }
+      for(let item of list) { //how many times does max score repeats
+        if(item.score == maxScore){
+          maxRep = maxRep + 1;//maxRep++;
+          wordMaxScore = item.word;
+        }
+      }
+      if(maxRep === 1) {// if one, we return winner 
+        return {word:wordMaxScore, score:maxScore};
+      }
+      else{ 
+        let wordArray = [];
+          for(let item of list){ //lets get those max
+            if(item.score==maxScore){
+              wordArray.push(item);
+            }
+          }
+          wordArray.sort((a, b) => (a.length > b.length) ? 1 : -1); //asc de min to max
+          let minLength = wordArray[0].length; //lenght min
+          let maxLength = wordArray[wordArray.length-1].length; //length max
+          let maxRepMinLength = 0;
+          let maxRepMaxLenght = 0;
+          
+          for(let item of wordArray) {// repeats ?
+            if(item.length == minLength){
+              maxRepMinLength = maxRepMinLength + 1;//maxRep++;
+              wordMaxScore = item.word;
+            }
+            if(item.length == maxLength){
+              maxRepMaxLenght=maxRepMaxLenght + 1;
+            }
+          }
+  
+          
+          if(maxRepMaxLenght == 1 && maxLength == 10) { 
+            return {word: wordArray[wordArray.length-1].word, score:maxScore};
+          }
+          else{
+            if(maxRepMinLength==1){
+              return {word: wordMaxScore, score:maxScore};
+            }
+            else{
+              return {word: wordMaxScore, score:maxScore};
+            } 
+          }
+      }
+    }
+};
+    
+    // Do not remove this line or your tests will break!
+    export default Adagrams;
