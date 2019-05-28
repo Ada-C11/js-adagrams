@@ -1,4 +1,5 @@
 const Adagrams = {
+
   // Draws letters into hand
   drawLetters() {
     const availableLetters = {
@@ -21,6 +22,7 @@ const Adagrams = {
     }
     return hand;
   },
+
   // Checked word played against player's hand
   usesAvailableLetters(word, hand) {
     const wordArray = word.split('');
@@ -34,6 +36,7 @@ const Adagrams = {
     });
     return available;
   },
+
   // Score word played
   scoreWord(word){
     const letterValues = {
@@ -63,7 +66,32 @@ const Adagrams = {
       total += 8;
     }
     return total;
+  },
+  
+  // highest scoring word and its score
+  highestScoreFrom(words) {
+    let bestWord = '';
+    let bestScore = 0;
+    let highestScore = {};
+
+    words.forEach(word => {
+      let score = this.scoreWord(word);
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestWord = word;
+      } else if (score == bestScore && word.length < bestWord.length && bestWord.length != 10) {
+        bestWord = word;
+      } else if (score == bestScore && word.length == 10 && bestWord.length != 10) {
+        bestWord = word;
+      }
+    })
+
+    highestScore['word'] = bestWord;
+    highestScore['score'] = bestScore;
+    return highestScore;
   }
 };
 
 export default Adagrams;
+
