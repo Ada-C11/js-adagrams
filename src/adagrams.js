@@ -73,7 +73,10 @@ const Adagrams = {
     return score;
   },
   highestScoreFrom (words) {
-    const scores = words.reduce((allScores, word) => {
+    const allScores = [];
+    let max = 0;
+    for (let word of words) {
+    // const scores = words.reduce((allScores, word) => {
       // this is THE WORST WAY TO DO THIS because it creates { a: 1, dog: 5, wHiMsY: 17 }
       // I want it to create {{ word: 'wHiMsY', score: 17 }}
       // but with an accumulator I can only figure it out how to get it like {
@@ -82,31 +85,43 @@ const Adagrams = {
       //   god: { word: 'god', score: 5 }
       // }
       // WHICH CREATES ALL THE USELESS CODE ALL THE WAY DOWN
-        allScores[word] = this.scoreWord(word);
-        return allScores;
-    }, {});
-
-    console.log(scores);
-    // this reduce IS FUCKING USELESS BECAUSE NOW ITS IN A FORM THAT IS A PAIN IN MY ASS TO DEAL WITH FOR NEXT LOGIC :(
-    let highs = [];
-    let high =  Math.max(...Object.values(scores));
-    for (let word in scores) {
-      if (scores[word] === high) {
-        highs.push({  'word': word ,  'score': scores[word] });
-      }
+        // allScores[word] = this.scoreWord(word);
+        // below creates { word: 'god', score: 5 } but only one cause the accumulator gets overwritten?
+        // allScores = { 'word': word, 'score': this.scoreWord(word) };
+        // return allScores;
+        let score = this.scoreWord(word);
+        if (score > max) {
+          max = score;
+        }
+        allScores.push({ 'word': word, 'score': this.scoreWord(word) });
+        
     }
+    // []);
+    // this reduce IS FUCKING USELESS BECAUSE NOW ITS IN A FORM THAT IS A PAIN IN MY ASS TO DEAL WITH FOR NEXT LOGIC :(
+    // let highs = [];
+    // let high =  Math.max(...Object.values(scores));
+    // for (let word in scores) {
+    //   if (scores[word] === high) {
+    //     highs.push({  'word': word ,  'score': scores[word] });
+    //   }
+    // }
+    // const results = allScores.filter(result => result.score === max);
+    // or even let results = allScores.filter(result => result.score === max);
+    // id really like to know why the above doesnt work buuut
+    let results;
+    results = allScores.filter(result => result.score === max);
 
-    if (highs.length === 1) {
-      return highs[0];
+
+    if (results.length === 1) {
+      return results[0];
     } else {
-      let shortest = highs[0];
-      for (let hight of highs) {
-        // of needs to be used to get the object, in just gets the index number?
-        // debugger;
-        if (hight.word.length === 10) {
-          return hight;
-        } else if (hight.word.length < shortest.word.length) {
-          shortest = hight;
+      let shortest = results[0];
+      for (let result of results) {
+    //     // of needs to be used to get the object, in just gets the index number?
+        if (result.word.length === 10) {
+          return result;
+        } else if (result.word.length < shortest.word.length) {
+          shortest = result;
         }
       }
       return shortest;
@@ -114,6 +129,7 @@ const Adagrams = {
   },
 };
 
+// Adagrams.highestScoreFrom(['a','dog','god']);
 // console.log(Adagrams.highestScoreFrom(['a','dog','god']));
 // console.log(Adagrams.highestScoreFrom(['a','dog','wHiMsY']));
 // console.log(Adagrams.usesAvailableLetters('DOG', ['D','O','G','A','A','A','A','A','A','A']));
