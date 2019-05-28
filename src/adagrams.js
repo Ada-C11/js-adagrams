@@ -88,10 +88,18 @@ const Adagrams = {
     for (const word of words) {
       const eachScore = this.scoreWord(word);
       if (eachScore > winningScore) {
-        console.log(word);
         winningScore = eachScore;
         winningWord = word;
-      } 
+      } else if (eachScore == winningScore) {
+        // console.log(winningWord);
+        if (winningWord.length != 10) {
+          let winningLength = winningWord.length;
+          winningScore = eachScore;
+          winningWord = word;
+          console.log(winningWord);
+          console.log(winningLength);
+        }
+      }
     }
     
     return {
