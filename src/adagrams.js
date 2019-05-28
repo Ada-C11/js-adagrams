@@ -1,7 +1,7 @@
-const Adagrams = {
+class Adagrams {
 
   // Draws letters into hand
-  drawLetters() {
+  static drawLetters() {
     const availableLetters = {
       A: 9, B: 2, C: 2, D: 4, E: 12, F: 2,
       G: 3, H: 2, I: 9, J: 1, K: 1, L: 4, M: 2,
@@ -21,10 +21,10 @@ const Adagrams = {
       hand.push(letterSet[Math.floor(Math.random() * letterSet.length)]);
     }
     return hand;
-  },
+  }
 
   // Checked word played against player's hand
-  usesAvailableLetters(word, hand) {
+  static usesAvailableLetters(word, hand) {
     const wordArray = word.split('');
     let available = true
     wordArray.forEach(function(letter) {
@@ -35,10 +35,10 @@ const Adagrams = {
       }
     });
     return available;
-  },
+  }
 
   // Score word played
-  scoreWord(word){
+  static scoreWord(word){
     const letterValues = {
       "AEIOULNRST": 1,
       "DG": 2,
@@ -66,10 +66,10 @@ const Adagrams = {
       total += 8;
     }
     return total;
-  },
-  
+  }
+
   // highest scoring word and its score
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let bestWord = '';
     let bestScore = 0;
     let highestScore = {};
@@ -91,7 +91,7 @@ const Adagrams = {
     highestScore['score'] = bestScore;
     return highestScore;
   }
-};
+}
 
 export default Adagrams;
 
