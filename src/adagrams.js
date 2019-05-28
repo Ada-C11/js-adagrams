@@ -1,31 +1,11 @@
 // Distribution of Letters
-const Letters = {};
-Letters['A'] = 9;
-Letters['B'] = 2;
-Letters['C'] = 2;
-Letters['D'] = 4;
-Letters['E'] = 12;
-Letters['F'] = 2;
-Letters['G'] = 3;
-Letters['H'] = 2;
-Letters['I'] = 9;
-Letters['J'] = 1;
-Letters['K'] = 1;
-Letters['L'] = 4;
-Letters['M'] = 2;
-Letters['N'] = 6;
-Letters['O'] = 8;
-Letters['P'] = 2;
-Letters['Q'] = 1;
-Letters['R'] = 6;
-Letters['S'] = 4;
-Letters['T'] = 6;
-Letters['U'] = 4;
-Letters['V'] = 2;
-Letters['W'] = 2;
-Letters['X'] = 1;
-Letters['Y'] = 2;
-Letters['Z'] = 1;
+const letterPool = ['A','A','A','A','A','A','A','A','A','B','B','C','C','D','D','D','D',
+                    'E','E','E','E','E','E','E','E','E','E','E','E',
+                    'F','F','G','G','G','H','H','I','I','I','I','I','I','I','I','I',
+                    'J','K','L','L','L','L','M','M','N','N','N','N','N','N',
+                    'O','O','O','O','O','O','O','O','P','P','Q','R','S','S','S','S',
+                    'T','T','T','T','T','T','U','U','U','U','V','V','W','W',
+                    'X','Y','Y','Z']
 
 const scoredWords = {};
 scoredWords['A'] = 1;
@@ -57,18 +37,9 @@ scoredWords['Z'] = 10;
 
 const Adagrams = {
   drawLetters() {
-    const lettersInHand = [];
-    let i = 0;
-    while(i < 10) {
-      const randomNum = Math.floor(Math.random() * 25) + 0; // returns a random integer from 1 to 26
-      const randomChar = String.fromCharCode(65 + randomNum);
-      if (Letters[randomChar] > 0) {
-        Letters[randomChar] = Letters[randomChar] - 1;
-        lettersInHand.push(randomChar);
-        i++;
-      }
-    }
-    return lettersInHand;
+    const shuffled = letterPool.sort(()=> 0.5 - Math.random());
+    let selected = shuffled.slice(0, 10);
+    return selected;
   },
   usesAvailableLetters(input, lettersInHand) {
     input = Array.from(input);
