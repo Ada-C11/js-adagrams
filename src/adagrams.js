@@ -26,14 +26,14 @@ const Adagrams = {
 
   usesAvailableLetters(input, lettersInHand) {
     for (let i = 0; i < input.length; i += 1) {
-      let letter = input.charAt(i);
-      if (!lettersInHand.includes(letter)) {
+      let letter = lettersInHand.indexOf(input[i]);
+      if (letter === -1) {
         return false;
+      } else {
+        lettersInHand.splice(letter, 1);
       }
-      let letterIndex = lettersInHand.indexOf(letter);
-      lettersInHand.splice(letterIndex, 1);
     }
-      return true;
+    return true;
   },
 
   scoreWord(word) {
@@ -85,4 +85,3 @@ const Adagrams = {
 };
 
 export default Adagrams;
-
