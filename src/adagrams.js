@@ -92,7 +92,7 @@ const Adagrams = {
         winningWord = word;
       } else if (eachScore == winningScore) {
         // console.log(winningWord);
-        if (winningWord.length != 10) {
+        if (winningWord.length != 10 && (word.length < winningWord.length || word.length == 10)) {
           let winningLength = winningWord.length;
           winningScore = eachScore;
           winningWord = word;
