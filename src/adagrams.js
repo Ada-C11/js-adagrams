@@ -1,6 +1,6 @@
 const Adagrams = {
+  // Draws letters into hand
   drawLetters() {
-    // Draws letters into hand
     const availableLetters = {
       A: 9, B: 2, C: 2, D: 4, E: 12, F: 2,
       G: 3, H: 2, I: 9, J: 1, K: 1, L: 4, M: 2,
@@ -19,7 +19,20 @@ const Adagrams = {
     for (let i = 0; i < 10; i += 1) {
       hand.push(letterSet[Math.floor(Math.random() * letterSet.length)]);
     }
-    return hand
+    return hand;
+  },
+  // Checked word played against player's hand
+  usesAvailableLetters(word, hand) {
+    const wordArray = word.split('');
+    let available = true
+    wordArray.forEach(function(letter) {
+      if (hand.includes(letter)) {
+        hand.splice(hand.indexOf(letter), 1);
+      } else {
+        available = false
+      }
+    });
+    return available;
   }
 };
 
