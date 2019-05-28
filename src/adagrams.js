@@ -51,10 +51,12 @@ const Adagrams = {
 
     const capitalWord = word.toUpperCase().split('');
     capitalWord.forEach(function(letter) {
-      if (Object.keys(letterValues).includes(letter)) {
-        letterScore = letterValues[letter];
-      }
-      total += letterScore;
+      Object.keys(letterValues).forEach(function(key) {
+        if (key.includes(letter)) {
+          letterScore = letterValues[key];
+          total += letterScore;
+        }
+      })
     })
 
     if (word.length > 6 && word.length < 11) {
