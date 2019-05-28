@@ -60,11 +60,13 @@ const Adagrams = {
     return array;
   },
   usesAvailableLetters(word, drawn) {
+    let drawnCopy = [...drawn];
     for (let i = 0; i < word.length; i += 1) {
       let char = word.charAt(i);
-      if (drawn.includes(char)) {
-        let index = drawn.indexOf(char);
-        drawn.splice(index, 1);
+
+      if (drawnCopy.includes(char)) {
+        let index = drawnCopy.indexOf(char);
+        drawnCopy.splice(index, 1);
       } else {
         return false;
       }
@@ -128,6 +130,32 @@ const Adagrams = {
       }
     }
     return score;
+  },
+
+  highestScoreFrom(words) {
+    let winner = {
+      word: '',
+      score: 0,
+    };
+    let maxScore = 0;
+    let bestWord = '';
+    words.forEach(word => {
+      let currentScore = this.scoreWord(word)
+      if (currentScore > maxScore) {
+        maxScore = currentScore;
+        bestWord = word;
+      } else if (currentScore === maxScore) {
+
+        if (word.length == 10 && bestWord.length != 10) {
+          bestWord = word;
+        } else if (word.length < bestWord.length && bestWord.length != 10) {
+          bestWord = word;
+        } 
+      }
+    })
+    winner.word = bestWord;
+    winner.score = maxScore;
+    return winner;
   }
 };
 
