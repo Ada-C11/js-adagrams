@@ -25,16 +25,15 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    let letters = lettersInHand;
     for (let i = 0; i < input.length; i += 1) {
-      let letter = letters.indexOf(input[i]);
-      if (letter === -1) {
+      let letter = input.charAt(i);
+      if (!lettersInHand.includes(letter)) {
         return false;
-      } else {
-        letters.splice(letter, 1);
       }
+      let letterIndex = lettersInHand.indexOf(letter);
+      lettersInHand.splice(letterIndex, 1);
+    }
       return true;
-    } 
   },
 
   scoreWord(word) {
@@ -44,11 +43,15 @@ const Adagrams = {
       'F': 4, 'H': 4, 'V': 4, 'W': 4,'Y': 4, 'K': 5, 'J': 8, 'X': 8, 
       'Q': 10, 'Z': 10, 
     }; 
+    word = word.toUpperCase();
     let score = 0; 
     if (word.length >= 7 && word.length < 11) {
       score = 8;
     }; 
     word.split('').forEach(letter => {
+      if (!letterValues.hasOwnProperty(letter)) {
+        return null;
+      }
       score += letterValues[letter];
     });
     return score; 
