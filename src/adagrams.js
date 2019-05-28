@@ -33,6 +33,34 @@ const Adagrams = {
       }
     });
     return available;
+  },
+  // Score word played
+  scoreWord(word){
+    const letterValues = {
+      "AEIOULNRST": 1,
+      "DG": 2,
+      "BCMP": 3,
+      "FHVWY": 4,
+      "K": 5,
+      "JX": 8,
+      "QZ": 10
+    }
+
+    let total = 0;
+    let letterScore = 0;
+
+    const capitalWord = word.toUpperCase().split('');
+    capitalWord.forEach(function(letter) {
+      if (Object.keys(letterValues).includes(letter)) {
+        letterScore = letterValues[letter];
+      }
+      total += letterScore;
+    })
+
+    if (word.length > 6 && word.length < 11) {
+      total += 8;
+    }
+    return total;
   }
 };
 
