@@ -1,5 +1,5 @@
-const Adagrams = {
-  drawLetters() {
+class Adagrams  {
+  static drawLetters() {
       const AllLetters = ['a','a','a','a','a','a','a','a','a','b','b','c','c','d','d','d','d','e','e','e','e','e','e','e','e','e','e','e','e','f','f','g','g','g','h','h','i','i','i','i','i','i','i','i','i','j','k','l','l','l','l','m','m','n','n','n','n','n','n','o','o','o','o','o','o','o','o','p','p','q','r','r','r','r','r','r','s','s','s','s','t','t','t','t','t','t','u','u','u','u','v','v','w','w','x','y','y','z'];
       const handy = [];
       for (let i = 1; i < 11; i++) {
@@ -9,8 +9,8 @@ const Adagrams = {
         handy.push(removed2.toUpperCase());
       }
       return handy;
-  },
-  usesAvailableLetters (input, lettersInHand) {
+  }
+  static usesAvailableLetters (input, lettersInHand) {
     let value = true;
     [...input].forEach(letter => {
       // ugh forEach CAN"T BE ESCAPED WITH A RETURN OR BREAK
@@ -24,8 +24,8 @@ const Adagrams = {
       }
     })
     return value;
-  },
-  scoreWord (word) {
+  }
+  static scoreWord (word) {
     const tile = {
       'a': 1,
       'b': 3,
@@ -71,8 +71,8 @@ const Adagrams = {
     }
 
     return score;
-  },
-  highestScoreFrom (words) {
+  }
+  static highestScoreFrom (words) {
     const allScores = [];
     let max = 0;
     for (let word of words) {
@@ -126,15 +126,8 @@ const Adagrams = {
       }
       return shortest;
     }
-  },
-};
-
-// Adagrams.highestScoreFrom(['a','dog','god']);
-// console.log(Adagrams.highestScoreFrom(['a','dog','god']));
-// console.log(Adagrams.highestScoreFrom(['a','dog','wHiMsY']));
-// console.log(Adagrams.usesAvailableLetters('DOG', ['D','O','G','A','A','A','A','A','A','A']));
-// console.log(Adagrams.usesAvailableLetters('DOOG', ['D','O','G','A','A','A','A','A','A','A']));
-
+  }
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
