@@ -43,6 +43,14 @@ describe('Adagrams', () => {
       expect(isValid).toBe(false);
 
     });
+
+    it('returns false if word is longer than drawn letters', () => {
+      const drawn = ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X'];
+      const word = 'DOGXXXXXXXX';
+
+      const isValid = Adagrams.usesAvailableLetters(word, drawn);
+      expect(isValid).toBe(false);
+    });
   });
 
   describe('scoreWord', () => {
